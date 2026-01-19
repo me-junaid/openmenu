@@ -34,9 +34,7 @@ export const ItemFeed = () => {
               >
                 <Plus height={25} width={25} />
               </div>
-              <div className="ml-3 flex justify-center items-center font-bold">
-                <p className={`text-center text-xl ${(item.selectionCount > 0) ? "flex" : "hidden"}`}>{item.selectionCount}</p>
-              </div>
+
               <div className={`${(item.selectionCount > 0) ? "flex" : "hidden"} h-7 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300`} onClick={() =>
                 updateSelectionCount(
                   user.categories[selectedCategory].id,
@@ -45,6 +43,10 @@ export const ItemFeed = () => {
                 )
               }>
                 <Minus height={25} width={25} />
+              </div>
+
+              <div className="ml-3 flex justify-center items-center font-bold">
+                <p className={`text-center text-xl ${(item.selectionCount > 0) ? "flex" : "hidden"}`}>{item.selectionCount}</p>
               </div>
             </div>
           </div>
