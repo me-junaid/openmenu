@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+:root {
+  --primary-background: #ffffff;
+  --primary-text: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-background: #000000;
+    --primary-text: #ffffff;
+  }
+}
+
+body {
+  background-color: var(--primary-background);
+  color: var(--primary-text);
+}
+
+header{
+  font-family:"StackSansText", sans-serif;
+}
+
+
+@font-face {
+  font-family: "StackSansText";
+  src: url("/src/assets/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
