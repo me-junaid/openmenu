@@ -22,8 +22,8 @@ export const ItemFeed = () => {
               <p className='line-clamp-2 text-xs hover:line-clamp-none text-[#959595]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quidem aperiam. Aliquam, consequatur illum. Doloribus ad deleniti velit voluptatibus incidunt similique repudiandae error sed ipsam enim! Provident aliquid placeat totam in. Sunt dolorem, incidunt minima aliquid, voluptatibus sapiente maiores quae fugit eius voluptate fuga molestiae? Ex saepe, nihil mollitia veniam sed quo quis quidem quasi nam, aliquid laboriosam. Ea cumque consequatur error est. Sint dolorem quas expedita excepturi beatae est, laudantium dolores aliquid repellat dolore pariatur possimus autem amet reprehenderit soluta cumque esse natus. Libero et inventore consequatur quam obcaecati ratione dolor nisi est ipsum ut? At amet numquam consequatur?</p>
             </div>
             <div className="w-25 h-25 bg-white rounded-2xl shrink-0"></div>
-            <div className="self-center flex flex-col gap-1">
-              <div className="h-7 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300"
+            <div className="flex flex-col gap-1">
+              <div className="h-7 mt-2 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300"
                 onClick={() => {
                   updateSelectionCount(
                     user.categories[selectedCategory].id,
