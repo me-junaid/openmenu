@@ -55,7 +55,7 @@ export const ItemFeed = () => {
               <p className='line-clamp-3 text-xs hover:line-clamp-none text-[#959595]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quidem aperiam. Aliquam, consequatur illum. Doloribus ad deleniti velit voluptatibus incidunt similique repudiandae error sed ipsam enim! Provident aliquid placeat totam in. Sunt dolorem, incidunt minima aliquid, voluptatibus sapiente maiores quae fugit eius voluptate fuga molestiae? Ex saepe, nihil mollitia veniam sed quo quis quidem quasi nam, aliquid laboriosam. Ea cumque consequatur error est. Sint dolorem quas expedita excepturi beatae est, laudantium dolores aliquid repellat dolore pariatur possimus autem amet reprehenderit soluta cumque esse natus. Libero et inventore consequatur quam obcaecati ratione dolor nisi est ipsum ut? At amet numquam consequatur?</p>
             </div>
             <div className="w-25 h-25 bg-white rounded-2xl shrink-0"></div>
-            <div className="h-5 min-w-5  self-center ml-3 rounded-full border border-green-200 flex justify-center items-center text-green-300"><Plus height={30} width={30}/></div>
+            <div className="h-7 min-w-7  self-center ml-3 rounded-full border border-green-200 flex justify-center items-center text-green-300"><Plus height={30} width={30}/></div>
           </div>
         ))
         }
