@@ -30,7 +30,7 @@ export const CategoryFeed = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0">
       <div
-        className=" p-3 pt-1 bg-black flex justify-around gap-3 overflow-x-auto snap-x snap-mandatory"
+        className=" p-3 pt-1 bg-black flex justify-around gap-3 overflow-x-auto snap-x snap-mandatory hide-scrollbar"
         role="list"
         aria-label="Category feed"
       >

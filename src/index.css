@@ -17,8 +17,8 @@ body {
   color: var(--primary-text);
 }
 
-header{
-  font-family:"StackSansText", sans-serif;
+header {
+  font-family: "StackSansText", sans-serif;
 }
 
 
@@ -32,6 +32,11 @@ header{
 
 
 
-body::-webkit-scrollbar{
-  display: none;
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, Android */
 }
