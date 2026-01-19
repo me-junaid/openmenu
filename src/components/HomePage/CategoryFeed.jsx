@@ -28,35 +28,43 @@ export const CategoryFeed = () => {
   );
 
   return (
-    <div
-      className="fixed bottom-0 left-0 right-0 p-3 pt-1 bg-black flex justify-around gap-3 overflow-x-auto snap-x snap-mandatory"
-      role="list"
-      aria-label="Category feed"
-    >
-      {items.map((item, index) => {
-        const isSelected = index === selectedCategory;
-        const baseClasses =
-          "p-2 flex flex-col justify-center items-center rounded-xl snap-center transition-transform duration-150";
-        const selectedClasses = isSelected
-          ? "scale-100 border-2 border-[#6f6f6f] bg-[#161616]"
-          : "scale-100 border-2 border-[#6f6f6f00] bg-[#161616]/90";
+    <div className="fixed bottom-0 left-0 right-0">
+      <div
+        className=" p-3 pt-1 bg-black flex justify-around gap-3 overflow-x-auto snap-x snap-mandatory"
+        role="list"
+        aria-label="Category feed"
+      >
+        {items.map((item, index) => {
+          const isSelected = index === selectedCategory;
+          const baseClasses =
+            "p-2 flex flex-col justify-center items-center shrink-0 rounded-xl snap-center transition-transform duration-150";
+          const selectedClasses = isSelected
+            ? "scale-100 border-2 border-[#6f6f6f] bg-[#161616]"
+            : "scale-100 border-2 border-[#6f6f6f00] bg-[#161616]/90";
 
-        return (
-          <div
-            id={`cat-item-${index}`}
-            key={index}
-            role="button"
-            tabIndex={0}
-            aria-pressed={isSelected}
-            onClick={() => handleSelect(index)}
-            onKeyDown={(e) => handleKeyDown(e, index)}
-            className={`${baseClasses} ${selectedClasses}`}
-          >
-            <div className="bg-gray-700 w-[70px] aspect-square rounded-md" />
-            <div className="font-semibold text-sm my-0.5 text-center">{item.name}</div>
-          </div>
-        );
-      })}
+          return (
+            <div
+              id={`cat-item-${index}`}
+              key={index}
+              role="button"
+              tabIndex={0}
+              aria-pressed={isSelected}
+              onClick={() => handleSelect(index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
+              className={`${baseClasses} ${selectedClasses}`}
+            >
+              <div className="bg-gray-700 w-20 aspect-square rounded-md" />
+              <div className={`${isSelected ? "text-yellow-200" : ""} font-semibold text-sm my-0.5 text-center`}>{item.name}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="h-16 bg-black flex p-3 pt-1 justify-between">
+        <div className=""></div>
+        <button className="bg-green-200 px-7 text-black border-yellow-200 border  text-xl font-bold rounded-2xl">
+          Call waiter
+        </button>
+      </div>
     </div>
   );
 };

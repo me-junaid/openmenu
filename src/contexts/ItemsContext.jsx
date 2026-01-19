@@ -14,7 +14,7 @@ export const ItemsProvider = ({ children }) => {
             name: "Tea",
             price: 12,
             img: "Image need to be added",
-            selectionCount: 1
+            selectionCount: 0
           },
           {
             name: "Coffee",
@@ -176,7 +176,7 @@ export const ItemsProvider = ({ children }) => {
 
   const [selectedCategory, setSelectedCategory] = useState(0)
 
-  const [user, setUser] = useState(initailData); // example state
+  const [user, setUser] = useState(initailData); 
 
   const updateSelectionCount = (categoryId, itemName, type = "increment") => {
     setUser(prev => ({

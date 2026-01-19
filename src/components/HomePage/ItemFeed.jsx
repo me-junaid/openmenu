@@ -13,7 +13,7 @@ export const ItemFeed = () => {
   return (
     <>
       <h2 className='text-2xl font-bold px-8 text-center'>{categoryName}</h2>
-      <div className='p-2 mt-0 space-y-2 mb-[130px] rounded-2xl'>
+      <div className='p-2 mt-0 space-y-2 mb-[230px] rounded-2xl'>
         {itemsInMenus.map((item, index) => (
           <div key={index} className='bg-[#020901] py-2 pl-5 pr-3 rounded-2xl flex'>
             <div className="grow">
@@ -30,17 +30,20 @@ export const ItemFeed = () => {
                     item.name,
                     "increment"
                   );
+                  console.log(item.selectionCount);
                 }}
               >
                 <Plus height={25} width={25} />
               </div>
 
-              <div className={`${(item.selectionCount > 0) ? "flex" : "hidden"} h-7 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300`} onClick={() =>
+              <div className={`${(item.selectionCount > 0) ? "flex" : "hidden"} h-7 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300`} onClick={() => {
                 updateSelectionCount(
                   user.categories[selectedCategory].id,
                   item.name,
                   "decrement"
                 )
+                console.log(item.selectionCount);
+              }
               }>
                 <Minus height={25} width={25} />
               </div>
