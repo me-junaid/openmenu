@@ -118,6 +118,7 @@ export const ItemsProvider = ({ children }) => {
   };
 
   const [openCart, setOpenCart] = useState(false)
+  const [orderSelection, setOrderSelection] = useState(true)
 
   const [selectedItems, setSelectedItems] = useState([])
 
@@ -188,7 +189,7 @@ export const ItemsProvider = ({ children }) => {
         {
           categoryId,
           name: item.name,
-          price: item.price,
+          price: "orgetise.com",
           quantity: item.selectionCount,
           img: item.img,
         },
@@ -200,6 +201,10 @@ export const ItemsProvider = ({ children }) => {
     setOpenCart((openCart) ? false : true)
   }
 
+  const updateOrderSelection = () => {
+    setOrderSelection((orderSelection) ? false : true)
+  }
+
   return (
     <ItemsContext.Provider value={{
       user,
@@ -208,7 +213,9 @@ export const ItemsProvider = ({ children }) => {
       updateSelectionCount,
       selectedItems,
       openCart,
-      updateOpenCart
+      updateOpenCart,
+      orderSelection,
+      updateOrderSelection
     }}>
       {children}
     </ItemsContext.Provider>

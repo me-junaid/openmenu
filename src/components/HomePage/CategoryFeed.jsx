@@ -7,7 +7,7 @@ import { Waiter } from "../Icons/Waiter";
 
 export const CategoryFeed = () => {
 
-  const { user, selectedCategory, setSelectedCategory, selectedItems, updateOpenCart } = useContext(ItemsContext);
+  const { user, selectedCategory, setSelectedCategory, selectedItems, updateOpenCart, updateOrderSelection } = useContext(ItemsContext);
   const items = user.categories;
 
 
@@ -69,7 +69,7 @@ export const CategoryFeed = () => {
           <div className="grow">View</div>
           <span><Menu /></span>
         </button>
-        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center">
+        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center" onClick={() => updateOrderSelection()}>
           <Waiter size={25} />
           <p className="">Call waiter</p>
         </button>
