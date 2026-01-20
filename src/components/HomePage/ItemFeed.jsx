@@ -23,17 +23,9 @@ export const ItemFeed = () => {
             </div>
             <div className="w-25 h-25 bg-white rounded-2xl shrink-0"></div>
             <div className="flex flex-col gap-1">
-              <div className="h-7 mt-2 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300"
-                onClick={() => {
-                  updateSelectionCount(
-                    user.categories[selectedCategory].id,
-                    item.name,
-                    "increment"
-                  );
-                  console.log(item.selectionCount);
-                }}
-              >
-                <Plus height={25} width={25} />
+
+              <div className="ml-3 flex justify-center items-center font-bold">
+                <p className={`text-center text-xl ${(item.selectionCount > 0) ? "flex" : "hidden"}`}>{item.selectionCount}</p>
               </div>
 
               <div className={`${(item.selectionCount > 0) ? "flex" : "hidden"} h-7 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300`} onClick={() => {
@@ -48,9 +40,19 @@ export const ItemFeed = () => {
                 <Minus height={25} width={25} />
               </div>
 
-              <div className="ml-3 flex justify-center items-center font-bold">
-                <p className={`text-center text-xl ${(item.selectionCount > 0) ? "flex" : "hidden"}`}>{item.selectionCount}</p>
+              <div className="h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300"
+                onClick={() => {
+                  updateSelectionCount(
+                    user.categories[selectedCategory].id,
+                    item.name,
+                    "increment"
+                  );
+                  console.log(item.selectionCount);
+                }}
+              >
+                <Plus height={25} width={25} />
               </div>
+
             </div>
           </div>
         ))
