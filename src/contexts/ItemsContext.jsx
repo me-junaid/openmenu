@@ -117,37 +117,92 @@ export const ItemsProvider = ({ children }) => {
     ],
   };
 
+  const [selectedItems, setSelectedItems] = useState([])
 
   const [selectedCategory, setSelectedCategory] = useState(0)
 
   const [user, setUser] = useState(initialData);
 
   const updateSelectionCount = (categoryId, itemName, type = "increment") => {
-    setUser(prev => ({
-      ...prev,
-      categories: prev.categories.map(category =>
+    setUser(prev => {
+      let updatedItem = null;
+
+      const updatedCategories = prev.categories.map(category =>
         category.id === categoryId
           ? {
             ...category,
-            items: category.items.map(item =>
-              item.name === itemName
-                ? {
-                  ...item,
-                  selectionCount:
-                    type === "increment"
-                      ? item.selectionCount + 1
-                      : Math.max(item.selectionCount - 1, 0)
-                }
-                : item
-            )
+            items: category.items.map(item => {
+              if (item.name === itemName) {
+                const newCount =
+                  type === "increment"
+                    ? item.selectionCount + 1
+                    : Math.max(item.selectionCount - 1, 0);
+
+                updatedItem = { ...item, selectionCount: newCount };
+
+                return updatedItem;
+              }
+              return item;
+            }),
           }
           : category
-      )
-    }));
+      );
+
+      // 🔥 sync selectedItems
+      if (updatedItem) {
+        updateSelectedItems(categoryId, updatedItem);
+      }
+
+      return { ...prev, categories: updatedCategories };
+    });
   };
 
+
+  const updateSelectedItems = (categoryId, item) => {
+    setSelectedItems(prev => {
+      const existingItem = prev.find(
+        i => i.name === item.name && i.categoryId === categoryId
+      );
+
+      // REMOVE if quantity becomes 0
+      if (item.selectionCount === 0) {
+        return prev.filter(
+          i => !(i.name === item.name && i.categoryId === categoryId)
+        );
+      }
+
+      // UPDATE if item already exists
+      if (existingItem) {
+        return prev.map(i =>
+          i.name === item.name && i.categoryId === categoryId
+            ? { ...i, quantity: item.selectionCount }
+            : i
+        );
+      }
+
+      // ADD new item
+      return [
+        ...prev,
+        {
+          categoryId,
+          name: item.name,
+          price: item.price,
+          quantity: item.selectionCount,
+          img: item.img,
+        },
+      ];
+    });
+  };
+
+
   return (
-    <ItemsContext.Provider value={{ user, selectedCategory, setSelectedCategory, updateSelectionCount }}>
+    <ItemsContext.Provider value={{
+      user,
+      selectedCategory,
+      setSelectedCategory,
+      updateSelectionCount,
+      selectedItems
+    }}>
       {children}
     </ItemsContext.Provider>
   );

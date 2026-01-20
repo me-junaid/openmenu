@@ -1,11 +1,12 @@
 import React, { useState, useCallback, useContext } from "react";
 import { ItemsContext } from "../../contexts/ItemsContext";
+import { SelectedItems } from "./SelectedItems";
 
 
 
 export const CategoryFeed = () => {
 
-  const { user, selectedCategory, setSelectedCategory } = useContext(ItemsContext);
+  const { user, selectedCategory, setSelectedCategory, selectedItems } = useContext(ItemsContext);
   const items = user.categories;
 
 
@@ -59,9 +60,14 @@ export const CategoryFeed = () => {
           );
         })}
       </div>
-      <div className="h-16 bg-black flex p-3 pt-1 justify-between">
-        <div className=""></div>
-        <button className="bg-green-200 px-7 text-black border-yellow-200 border  text-xl font-bold rounded-2xl">
+      <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-16 bg-black p-3 pt-1 justify-between`}>
+        <div className=" flex justify-center items-center">
+          {selectedItems.length} . {selectedItems.length === 1 ? "Item" : "Items"} |
+        </div>
+        <button className="ml-1 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-green-900/9 px-4 text-white/87 border-green-200 border  text-lg font-bold rounded-2xl">
+          View
+        </button>
+        <button className="ml-auto bg-green-200 px-7 text-black border-yellow-200 border  text-lg font-bold rounded-2xl">
           Call waiter
         </button>
       </div>

@@ -6,7 +6,7 @@ import { Minus } from '../Icons/Minus';
 
 export const ItemFeed = () => {
 
-  const { user, selectedCategory, updateSelectionCount } = useContext(ItemsContext);
+  const { user, selectedCategory, updateSelectionCount, selectedItems } = useContext(ItemsContext);
   const categoryName = user.categories[selectedCategory].name;
   const itemsInMenus = user.categories[selectedCategory].items;
 
@@ -60,6 +60,8 @@ export const ItemFeed = () => {
                     item.name,
                     "increment"
                   );
+
+                  console.log(selectedItems);
                 }}
                 className="
     h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full 
