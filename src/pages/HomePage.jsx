@@ -10,10 +10,12 @@ export const HomePage = () => {
   return (
     <ItemsProvider>
       <Header />
+      <div className="fixed top-0 bottom-0 left-0 right-0">
         <PromoBanner />
         <ItemFeed />
-      <CategoryFeed />
-      <SelectedItems/>
+        <CategoryFeed />
+        <SelectedItems />
+      </div>
     </ItemsProvider>
   )
 }
