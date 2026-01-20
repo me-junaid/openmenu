@@ -10,9 +10,11 @@ export const HomePage = () => {
   return (
     <ItemsProvider>
       <Header />
-      <div className="fixed top-0 bottom-0 left-0 right-0 overflow-y-scroll">
-        <PromoBanner />
-        <ItemFeed />
+      <div className="fixed top-[50px] bottom-0 left-0 right-0">
+        <div className="overflow-y-scroll h-full hide-scrollbar">
+          <PromoBanner />
+          <ItemFeed />
+        </div>
         <CategoryFeed />
         <SelectedItems />
       </div>
