@@ -125,6 +125,7 @@ export const ItemsProvider = ({ children }) => {
 
   const [openCart, setOpenCart] = useState(false)
   const [orderSelection, setOrderSelection] = useState(false)
+  const [confirmOrder, setConfirmOrder] = useState(false)
 
   const [selectedItems, setSelectedItems] = useState([
     {
@@ -338,6 +339,9 @@ export const ItemsProvider = ({ children }) => {
   const updateOrderSelection = () => {
     setOrderSelection((orderSelection) ? false : true)
   }
+  const updateConfirmOrder = () => {
+    setConfirmOrder(true)
+  }
 
   return (
     <ItemsContext.Provider value={{
@@ -349,7 +353,9 @@ export const ItemsProvider = ({ children }) => {
       openCart,
       updateOpenCart,
       orderSelection,
-      updateOrderSelection
+      updateOrderSelection,
+      confirmOrder,
+      updateConfirmOrder
     }}>
       {children}
     </ItemsContext.Provider>

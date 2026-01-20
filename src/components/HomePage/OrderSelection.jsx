@@ -8,7 +8,7 @@ import { Check } from '../Icons/Check';
 
 export const OrderSelection = () => {
 
-  const { selectedItems, orderSelection, updateOrderSelection } = useContext(ItemsContext);
+  const { selectedItems, orderSelection, updateOrderSelection, confirmOrder, updateConfirmOrder } = useContext(ItemsContext);
 
 
   return (
@@ -16,20 +16,29 @@ export const OrderSelection = () => {
       <div className="flex items-center p-3 pt-8 gap-2">
         <Menu width={30} height={30} />
         <h1 className="font-bold text-4xl my-font">Place Order</h1>
-        <button className="ml-auto p-2 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-red-900/40 text-white/87  text-lg font-bold rounded-full flex items-center justify-between" onClick={() => updateOrderSelection()}>
+        <button className={`${(confirmOrder) ? "hidden" : " flex"} ml-auto p-2 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-red-900/40 text-white/87  text-lg font-bold rounded-full items-center justify-between`} onClick={() => updateOrderSelection()}>
           <span><Close /></span>
         </button>
       </div>
 
-      <p className="text-gray-400 pl-4 pb-2">Show the QR to waiter to place the order</p>
+      <p className="flex justify-between px-3 text-gray-300  text-sm mb-1">
+        Take a moment to review your order before confirming.
+      </p>
 
       <div className=" p-2 pt-0 grow overflow-y-scroll hide-scrollbar">
-        <div className="aspect-square mb-2 rounded-xl bg-green-900/9">
-          <QRGenerator />
-          <p className='text-center text-gray-400 mb-5'>Before that please confirm the order.</p>
+        <div className="p-5 mb-2 rounded-xl bg-green-900/9">
+          <QRGenerator size={(confirmOrder) ? 300 : 150} fgColor={(confirmOrder) ? "#ffffff" : "#ffffff10"} />
         </div>
 
 
+        <p className={`${(confirmOrder) ? "text-yellow-200" : "text-gray-700"} text-center  pb-4 text-sm`}>
+          Show this QR code to the waiter to place your order.
+        </p>
+
+        <div className="flex justify-between px-3 text-gray-300 mt-5 text-xs mb-1">
+          <p>Item</p>
+          <p>Quantity</p>
+        </div>
         <div className="flex flex-col gap-2 ">
           {selectedItems.map((item) => {
             return (
@@ -49,9 +58,9 @@ export const OrderSelection = () => {
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} selected
         </div>
-        <button className="ml-auto bg-green-200/90 active:bg-green-200 duration-200  pl-2 pr-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center">
+        <button className={`${(confirmOrder) ? "bg-green-500" : " active:bg-green-200 duration-200  "} bg-gray-200/90 ml-auto pl-2 pr-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center`} onClick={() => updateConfirmOrder()}>
           <Check size={35} />
-          <p className="">Confirm Order</p>
+          <p className="">{(confirmOrder? "" : "Confirm Order")}</p>
         </button>
       </div>
     </div>

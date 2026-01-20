@@ -2,9 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import { ItemsContext } from "../../contexts/ItemsContext";
 
-export default function QRGenerator() {
+export default function QRGenerator({ size = 300, fgColor = "#ffffff10" }) {
   const { selectedItems } = useContext(ItemsContext);
-  const [text, setText] = useState("orgetise.com");
+  const origin = window.location.origin;
+
+  const [text, setText] = useState(`${origin}/order?table=2&token=124324`);
 
   // useEffect(() => {
   //   if (selectedItems) {
@@ -17,8 +19,8 @@ export default function QRGenerator() {
       {text && (
         <QRCodeCanvas
           value={text}
-          size={300}
-          fgColor="#ffffff20"
+          size={size}
+          fgColor={fgColor}
           bgColor="#000000"
           level="L"
         />
