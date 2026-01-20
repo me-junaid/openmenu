@@ -4,6 +4,7 @@ import { Menu } from '../Icons/Menu';
 import { Waiter } from '../Icons/Waiter';
 import { Close } from '../Icons/Close';
 import QRGenerator from '../Utilis/QRGenerator';
+import { Check } from '../Icons/Check';
 
 export const OrderSelection = () => {
 
@@ -23,9 +24,11 @@ export const OrderSelection = () => {
       <p className="text-gray-400 pl-4 pb-2">Show the QR to waiter to place the order</p>
 
       <div className=" p-2 pt-0 grow overflow-y-scroll hide-scrollbar">
-        <div className="aspect-square m-4 bg-white mb-2 rounded-lg">
+        <div className="aspect-square mb-2 rounded-xl bg-green-900/9">
           <QRGenerator />
+          <p className='text-center text-gray-400 mb-5'>Before that please confirm the order.</p>
         </div>
+
 
         <div className="flex flex-col gap-2 ">
           {selectedItems.map((item) => {
@@ -46,6 +49,10 @@ export const OrderSelection = () => {
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} selected
         </div>
+        <button className="ml-auto bg-green-200/90 active:bg-green-200 duration-200  pl-2 pr-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center">
+          <Check size={35} />
+          <p className="">Confirm Order</p>
+        </button>
       </div>
     </div>
   )

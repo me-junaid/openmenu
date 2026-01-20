@@ -117,10 +117,144 @@ export const ItemsProvider = ({ children }) => {
     ],
   };
 
-  const [openCart, setOpenCart] = useState(false)
-  const [orderSelection, setOrderSelection] = useState(true)
+  // const sizeInBytes = new Blob([JSON.stringify(initialData)]).size;
+  // const sizeInKB = (sizeInBytes / 1024).toFixed(2);
 
-  const [selectedItems, setSelectedItems] = useState([])
+  // console.log(sizeInKB, "KB");
+
+
+  const [openCart, setOpenCart] = useState(false)
+  const [orderSelection, setOrderSelection] = useState(false)
+
+  const [selectedItems, setSelectedItems] = useState([
+    {
+      "categoryId": 1,
+      "name": "Tea",
+      "price": 12,
+      "quantity": 3,
+      "img": "tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Coffee",
+      "price": 15,
+      "quantity": 1,
+      "img": "coffee.png"
+    },
+    {
+      "categoryId": 2,
+      "name": "Green Tea",
+      "price": 18,
+      "quantity": 2,
+      "img": "green-tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Tea",
+      "price": 12,
+      "quantity": 3,
+      "img": "tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Coffee",
+      "price": 15,
+      "quantity": 1,
+      "img": "coffee.png"
+    },
+    {
+      "categoryId": 2,
+      "name": "Green Tea",
+      "price": 18,
+      "quantity": 2,
+      "img": "green-tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Tea",
+      "price": 12,
+      "quantity": 3,
+      "img": "tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Coffee",
+      "price": 15,
+      "quantity": 1,
+      "img": "coffee.png"
+    },
+    {
+      "categoryId": 2,
+      "name": "Green Tea",
+      "price": 18,
+      "quantity": 2,
+      "img": "green-tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Tea",
+      "price": 12,
+      "quantity": 3,
+      "img": "tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Coffee",
+      "price": 15,
+      "quantity": 1,
+      "img": "coffee.png"
+    },
+    {
+      "categoryId": 2,
+      "name": "Green Tea",
+      "price": 18,
+      "quantity": 2,
+      "img": "green-tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Tea",
+      "price": 12,
+      "quantity": 3,
+      "img": "tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Coffee",
+      "price": 15,
+      "quantity": 1,
+      "img": "coffee.png"
+    },
+    {
+      "categoryId": 2,
+      "name": "Green Tea",
+      "price": 18,
+      "quantity": 2,
+      "img": "green-tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Tea",
+      "price": 12,
+      "quantity": 3,
+      "img": "tea.png"
+    },
+    {
+      "categoryId": 1,
+      "name": "Coffee",
+      "price": 15,
+      "quantity": 1,
+      "img": "coffee.png"
+    },
+    {
+      "categoryId": 2,
+      "name": "Green Tea",
+      "price": 18,
+      "quantity": 2,
+      "img": "green-tea.png"
+    }
+  ]
+  )
 
   const [selectedCategory, setSelectedCategory] = useState(0)
 
@@ -189,7 +323,7 @@ export const ItemsProvider = ({ children }) => {
         {
           categoryId,
           name: item.name,
-          price: "orgetise.com",
+          price: item.price,
           quantity: item.selectionCount,
           img: item.img,
         },

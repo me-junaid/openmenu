@@ -20,7 +20,7 @@ export default function ScanPage() {
       ) : (
         <div className="bg-gray-100 p-4 rounded w-80">
           <h2 className="font-semibold mb-2">Scanned Result</h2>
-          <pre className="text-sm break-words">
+          <pre className="text-sm wrap-break-word">
             {typeof result === "string"
               ? result
               : JSON.stringify(result, null, 2)}
