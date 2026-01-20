@@ -19,7 +19,7 @@ export const ItemFeed = () => {
             <div className="grow">
               <p className='text-xl font-semibold text-green-200'>{item.name}</p>
               <p className='text-gray-200'>₹{item.price}</p>
-              <p className='line-clamp-2 text-xs hover:line-clamp-none text-[#959595]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quidem aperiam. Aliquam, consequatur illum. Doloribus ad deleniti velit voluptatibus incidunt similique repudiandae error sed ipsam enim! Provident aliquid placeat totam in. Sunt dolorem, incidunt minima aliquid, voluptatibus sapiente maiores quae fugit eius voluptate fuga molestiae? Ex saepe, nihil mollitia veniam sed quo quis quidem quasi nam, aliquid laboriosam. Ea cumque consequatur error est. Sint dolorem quas expedita excepturi beatae est, laudantium dolores aliquid repellat dolore pariatur possimus autem amet reprehenderit soluta cumque esse natus. Libero et inventore consequatur quam obcaecati ratione dolor nisi est ipsum ut? At amet numquam consequatur?</p>
+              <p className='line-clamp-2 text-xs text-[#959595]'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur, quidem aperiam. Aliquam, consequatur illum. Doloribus ad deleniti velit voluptatibus incidunt similique repudiandae error sed ipsam enim! Provident aliquid placeat totam in. Sunt dolorem, incidunt minima aliquid, voluptatibus sapiente maiores quae fugit eius voluptate fuga molestiae? Ex saepe, nihil mollitia veniam sed quo quis quidem quasi nam, aliquid laboriosam. Ea cumque consequatur error est. Sint dolorem quas expedita excepturi beatae est, laudantium dolores aliquid repellat dolore pariatur possimus autem amet reprehenderit soluta cumque esse natus. Libero et inventore consequatur quam obcaecati ratione dolor nisi est ipsum ut? At amet numquam consequatur?</p>
             </div>
             <div className="w-25 h-25 bg-white rounded-2xl shrink-0"></div>
             <div className="flex flex-col gap-1">
@@ -34,12 +34,13 @@ export const ItemFeed = () => {
     border-2 border-green-200
     flex justify-center items-center
     text-green-300 cursor-pointer
-    transition-all duration-200
+    transition-all duration-100
     ${item.selectionCount > 0
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-75 pointer-events-none"}
-    hover:bg-green-200/10
+    md:hover:bg-green-200/10
     active:scale-90
+    active:bg-green-200/20
   `}
                 onClick={() => {
                   updateSelectionCount(
@@ -49,7 +50,7 @@ export const ItemFeed = () => {
                   );
                 }}
               >
-                <Minus height={25} width={25} />
+                <Minus height={20} width={20} />
               </div>
 
               <div
@@ -65,10 +66,10 @@ export const ItemFeed = () => {
     border-2 border-green-200 
     flex justify-center items-center 
     text-green-300 cursor-pointer
-    transition-all duration-150
+    transition-all duration-100
     active:scale-90 
     active:bg-green-200/20
-    hover:bg-green-200/10
+    md:hover:bg-green-200/10
   "
               >
                 <Plus height={25} width={25} />

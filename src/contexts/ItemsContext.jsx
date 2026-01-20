@@ -4,179 +4,123 @@ export const ItemsContext = createContext();
 
 export const ItemsProvider = ({ children }) => {
 
-  const initailData = {
+  const initialData = {
     categories: [
       {
         id: 1,
         name: "Hot Drinks",
         items: [
-          {
-            name: "Tea",
-            price: 12,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Coffee",
-            price: 15,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Boost",
-            price: 150,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Tea",
-            price: 12,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Coffee",
-            price: 15,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Boost",
-            price: 150,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-        ]
+          { name: "Tea", price: 12, img: "", selectionCount: 0 },
+          { name: "Black Tea", price: 15, img: "", selectionCount: 0 },
+          { name: "Masala Tea", price: 18, img: "", selectionCount: 0 },
+          { name: "Coffee", price: 15, img: "", selectionCount: 0 },
+          { name: "Filter Coffee", price: 20, img: "", selectionCount: 0 },
+          { name: "Boost", price: 150, img: "", selectionCount: 0 },
+          { name: "Horlicks", price: 140, img: "", selectionCount: 0 },
+          { name: "Hot Chocolate", price: 120, img: "", selectionCount: 0 },
+        ],
       },
+
       {
         id: 2,
-        name: "Snacks",
+        name: "Cold Drinks",
         items: [
-          {
-            name: "Payampori",
-            price: 10,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Elanji",
-            price: 15,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Cutlet",
-            price: 15,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Chicken Roll",
-            price: 20,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-        ]
+          { name: "Cold Coffee", price: 80, img: "", selectionCount: 0 },
+          { name: "Iced Tea", price: 70, img: "", selectionCount: 0 },
+          { name: "Lemon Soda", price: 60, img: "", selectionCount: 0 },
+          { name: "Mint Lime", price: 65, img: "", selectionCount: 0 },
+          { name: "Chocolate Milkshake", price: 120, img: "", selectionCount: 0 },
+          { name: "Vanilla Milkshake", price: 110, img: "", selectionCount: 0 },
+        ],
       },
+
       {
         id: 3,
-        name: "Juice",
+        name: "Snacks",
         items: [
-          {
-            name: "Musambi Juice",
-            price: 200,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Lime Juice",
-            price: 200,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Orange Juice",
-            price: 300,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Anar Juice",
-            price: 150,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-
-        ]
+          { name: "Payampori", price: 10, img: "", selectionCount: 0 },
+          { name: "Elanji", price: 15, img: "", selectionCount: 0 },
+          { name: "Cutlet", price: 15, img: "", selectionCount: 0 },
+          { name: "Veg Roll", price: 20, img: "", selectionCount: 0 },
+          { name: "Chicken Roll", price: 25, img: "", selectionCount: 0 },
+          { name: "Samosa", price: 12, img: "", selectionCount: 0 },
+          { name: "Pazham Pori", price: 12, img: "", selectionCount: 0 },
+          { name: "Bread Pakoda", price: 18, img: "", selectionCount: 0 },
+        ],
       },
+
       {
         id: 4,
-        name: "Juice",
+        name: "Fast Food",
         items: [
-          {
-            name: "Musambi Juice",
-            price: 200,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Lime Juice",
-            price: 200,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Orange Juice",
-            price: 300,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Anar Juice",
-            price: 150,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-
-        ]
+          { name: "Veg Sandwich", price: 40, img: "", selectionCount: 0 },
+          { name: "Egg Sandwich", price: 50, img: "", selectionCount: 0 },
+          { name: "Chicken Sandwich", price: 70, img: "", selectionCount: 0 },
+          { name: "Veg Burger", price: 60, img: "", selectionCount: 0 },
+          { name: "Chicken Burger", price: 90, img: "", selectionCount: 0 },
+          { name: "French Fries", price: 70, img: "", selectionCount: 0 },
+          { name: "Cheese Fries", price: 90, img: "", selectionCount: 0 },
+        ],
       },
+
       {
         id: 5,
-        name: "Juice",
+        name: "Juices",
         items: [
-          {
-            name: "Musambi Juice",
-            price: 200,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Lime Juice",
-            price: 200,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Orange Juice",
-            price: 300,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-          {
-            name: "Anar Juice",
-            price: 150,
-            img: "Image need to be added",
-            selectionCount: 0
-          },
-
-        ]
+          { name: "Musambi Juice", price: 200, img: "", selectionCount: 0 },
+          { name: "Lime Juice", price: 60, img: "", selectionCount: 0 },
+          { name: "Orange Juice", price: 90, img: "", selectionCount: 0 },
+          { name: "Anar Juice", price: 150, img: "", selectionCount: 0 },
+          { name: "Watermelon Juice", price: 80, img: "", selectionCount: 0 },
+          { name: "Pineapple Juice", price: 90, img: "", selectionCount: 0 },
+          { name: "Grape Juice", price: 100, img: "", selectionCount: 0 },
+        ],
       },
-    ]
-  }
+
+      {
+        id: 6,
+        name: "Desserts",
+        items: [
+          { name: "Gulab Jamun", price: 40, img: "", selectionCount: 0 },
+          { name: "Ice Cream Vanilla", price: 60, img: "", selectionCount: 0 },
+          { name: "Ice Cream Chocolate", price: 70, img: "", selectionCount: 0 },
+          { name: "Brownie", price: 90, img: "", selectionCount: 0 },
+          { name: "Brownie with Ice Cream", price: 120, img: "", selectionCount: 0 },
+          { name: "Fruit Salad", price: 80, img: "", selectionCount: 0 },
+        ],
+      },
+
+      {
+        id: 7,
+        name: "Breakfast",
+        items: [
+          { name: "Idli (2 pcs)", price: 30, img: "", selectionCount: 0 },
+          { name: "Dosa", price: 40, img: "", selectionCount: 0 },
+          { name: "Masala Dosa", price: 60, img: "", selectionCount: 0 },
+          { name: "Poori Masala", price: 50, img: "", selectionCount: 0 },
+          { name: "Upma", price: 35, img: "", selectionCount: 0 },
+          { name: "Vada (2 pcs)", price: 30, img: "", selectionCount: 0 },
+        ],
+      },
+
+      {
+        id: 8,
+        name: "Meals & Rice",
+        items: [
+          { name: "Veg Meals", price: 90, img: "", selectionCount: 0 },
+          { name: "Chicken Meals", price: 140, img: "", selectionCount: 0 },
+          { name: "Fried Rice Veg", price: 120, img: "", selectionCount: 0 },
+          { name: "Fried Rice Chicken", price: 150, img: "", selectionCount: 0 },
+          { name: "Ghee Rice", price: 110, img: "", selectionCount: 0 },
+        ],
+      },
+    ],
+  };
+
 
   const [selectedCategory, setSelectedCategory] = useState(0)
 
-  const [user, setUser] = useState(initailData); 
+  const [user, setUser] = useState(initialData);
 
   const updateSelectionCount = (categoryId, itemName, type = "increment") => {
     setUser(prev => ({

@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Header = () => {
   return (
-    <header className='px-4 py-2 fixed top-0 bg-black right-0 left-0 h-[50px] flex justify-between items-center'>
+    <header className='px-4 py-2 z-10 fixed top-0 bg-black right-0 left-0 h-[50px] flex justify-between items-center'>
       <h1 className='text-2xl font-bold'><span className='text-green-300'>Open</span>menu</h1>
       <div className="">
         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" className="bi bi-shop-window" viewBox="0 0 16 16">
