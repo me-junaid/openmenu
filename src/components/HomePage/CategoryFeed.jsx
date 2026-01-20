@@ -64,7 +64,7 @@ export const CategoryFeed = () => {
         <div className=" flex justify-center items-center">
           {selectedItems.length} . {selectedItems.length === 1 ? "Item" : "Items"} |
         </div>
-        <button className="ml-1 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-green-900/9 px-4 text-white/87 border-green-200 border  text-lg font-bold rounded-2xl">
+        <button className="ml-1 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-green-900/9 px-4 text-white/87 border-green-200 border  text-lg font-bold rounded-2xl" onClick={() => updateOpenCart()}>
           View
         </button>
         <button className="ml-auto bg-green-200 px-7 text-black border-yellow-200 border  text-lg font-bold rounded-2xl">

@@ -117,6 +117,8 @@ export const ItemsProvider = ({ children }) => {
     ],
   };
 
+  const [openCart, setOpenCart] = useState(false)
+
   const [selectedItems, setSelectedItems] = useState([])
 
   const [selectedCategory, setSelectedCategory] = useState(0)
@@ -194,6 +196,9 @@ export const ItemsProvider = ({ children }) => {
     });
   };
 
+  const updateOpenCart = () => {
+    setOpenCart((openCart) ? false : true)
+  }
 
   return (
     <ItemsContext.Provider value={{
@@ -201,7 +206,9 @@ export const ItemsProvider = ({ children }) => {
       selectedCategory,
       setSelectedCategory,
       updateSelectionCount,
-      selectedItems
+      selectedItems,
+      openCart,
+      updateOpenCart
     }}>
       {children}
     </ItemsContext.Provider>
