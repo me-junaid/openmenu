@@ -18,8 +18,8 @@ export default function QRGenerator() {
         <QRCodeCanvas
           value={text}
           size={300}
-          fgColor="#ffffff"
-          bgColor="#000000"
+          bgColor="#ffffff"
+          fgColor="#000000"
           level="L"
         />
       )}

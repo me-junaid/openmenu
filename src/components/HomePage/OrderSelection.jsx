@@ -23,7 +23,7 @@ export const OrderSelection = () => {
       <p className="text-gray-400 pl-4 pb-2">Show the QR to waiter to place the order</p>
 
       <div className=" p-2 pt-0 grow overflow-y-scroll hide-scrollbar">
-        <div className="aspect-square bg-green-900/9 mb-2 rounded-lg">
+        <div className="aspect-square m-4 bg-white mb-2 rounded-lg">
           <QRGenerator />
         </div>
 
