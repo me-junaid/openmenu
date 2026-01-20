@@ -1,62 +1,70 @@
 import { useEffect, useRef, useState } from "react";
 import { BrowserQRCodeReader } from "@zxing/browser";
+import { DecodeHintType, BarcodeFormat } from "@zxing/library";
 
 export default function QRScanner({ onScan }) {
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const codeReader = new BrowserQRCodeReader();
-    
-    // Using a Ref to track if we already found a result to prevent double-firing
+    // 1. Setup Hints to support White (Inverted) QR Codes
+    const hints = new Map();
+    hints.set(DecodeHintType.ALSO_INVERTED, true); // <--- Key for white QR codes
+    hints.set(DecodeHintType.TRY_HARDER, true);    // <--- Higher accuracy
+    hints.set(DecodeHintType.POSSIBLE_FORMATS, [BarcodeFormat.QR_CODE]);
+
+    const codeReader = new BrowserQRCodeReader(hints);
     let isScanning = true;
 
     const startScanner = async () => {
       try {
-        // 1. Define constraints
         const constraints = {
           video: {
             facingMode: { ideal: "environment" },
             width: { ideal: 1280 },
-            height: { ideal: 720 }
+            height: { ideal: 720 },
           },
         };
 
-        // 2. Use decodeFromConstraints instead of decodeFromVideoDevice
-        // This method handles the camera stream and decoding loop automatically
+        // 2. Start decoding from the constraints
         const controls = await codeReader.decodeFromConstraints(
           constraints,
           videoRef.current,
           (result, err) => {
             if (result && isScanning) {
-              const text = result.getText();
-              console.log("Found QR code:", text);
+              const scannedText = result.getText();
+              console.log("Scanned:", scannedText);
               
-              // Vibrate and call the callback
+              // Prevent further scans until component logic decides
+              isScanning = false; 
+              
+              // Feedback
               navigator.vibrate?.(100);
-              onScan(text);
-              
-              // Stop scanning once found (optional: remove if you want continuous scanning)
-              isScanning = false;
+              onScan(scannedText);
+
+              // Stop the camera
               controls.stop();
             }
-            
-            // We ignore err here because ZXing throws errors 
-            // constantly while searching for a QR code in the frame
+
+            // Note: 'err' fires constantly when no QR is found. 
+            // We don't set error state here.
           }
         );
 
         controlsRef.current = controls;
+        setIsLoading(false);
       } catch (err) {
-        setError("Camera access denied or not found");
-        console.error("Scanner Error:", err);
+        console.error("Scanner Initialization Error:", err);
+        setError("Camera access denied or device not found.");
+        setIsLoading(false);
       }
     };
 
     startScanner();
 
-    // Cleanup: Stop the camera tracks when component unmounts
+    // Cleanup: stop camera tracks when the component is removed from UI
     return () => {
       isScanning = false;
       if (controlsRef.current) {
@@ -66,25 +74,59 @@ export default function QRScanner({ onScan }) {
   }, [onScan]);
 
   return (
-    <div className="flex flex-col items-center gap-3">
-      <div className="relative overflow-hidden rounded-xl border-2 border-gray-300">
+    <div className="flex flex-col items-center gap-4 p-4">
+      <div className="relative w-full max-w-sm aspect-square overflow-hidden rounded-2xl bg-black shadow-xl border-4 border-gray-800">
+        
+        {/* The Video Feed */}
         <video
           ref={videoRef}
-          className="w-full max-w-[400px] h-auto" // Avoid 'object-cover' during debug to see real feed
+          className="w-full h-full object-cover"
           playsInline
           muted
         />
-        {/* Decorative Scanning Overlay */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-10 border-2 border-green-500 opacity-50 animate-pulse" />
+
+        {/* Loading Overlay */}
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/50 text-white">
+            <p className="animate-pulse">Starting Camera...</p>
+          </div>
+        )}
+
+        {/* Scanning UI Overlay (Square target) */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-64 h-64 border-2 border-green-400 rounded-lg relative">
+            {/* Corner Accents */}
+            <div className="absolute -top-1 -left-1 w-6 h-6 border-t-4 border-l-4 border-green-500"></div>
+            <div className="absolute -top-1 -right-1 w-6 h-6 border-t-4 border-r-4 border-green-500"></div>
+            <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-4 border-l-4 border-green-500"></div>
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-4 border-r-4 border-green-500"></div>
+            
+            {/* Moving Scan Line */}
+            <div className="w-full h-0.5 bg-green-400/50 absolute top-0 animate-scan"></div>
+          </div>
         </div>
       </div>
 
-      {error && <p className="text-red-500 text-sm font-medium">{error}</p>}
-      
-      <p className="text-gray-500 text-xs">
-        Point your camera at a QR code
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative">
+          {error}
+        </div>
+      )}
+
+      <p className="text-sm text-gray-500 text-center italic">
+        Supports standard and white (inverted) QR codes.
       </p>
+
+      {/* Adding custom animation for the scan line */}
+      <style jsx>{`
+        @keyframes scan {
+          0% { top: 0%; }
+          100% { top: 100%; }
+        }
+        .animate-scan {
+          animation: scan 2s linear infinite;
+        }
+      `}</style>
     </div>
   );
 }

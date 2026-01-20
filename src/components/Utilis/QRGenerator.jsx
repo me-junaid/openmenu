@@ -4,13 +4,13 @@ import { ItemsContext } from "../../contexts/ItemsContext";
 
 export default function QRGenerator() {
   const { selectedItems } = useContext(ItemsContext);
-  const [text, setText] = useState("");
+  const [text, setText] = useState("orgetise.com");
 
-  useEffect(() => {
-    if (selectedItems) {
-      setText(JSON.stringify(selectedItems));
-    }
-  }, [selectedItems]);
+  // useEffect(() => {
+  //   if (selectedItems) {
+  //     setText(JSON.stringify(selectedItems));
+  //   }
+  // }, [selectedItems]);
 
   return (
     <div className="h-full flex flex-col items-center justify-center gap-4">
@@ -18,8 +18,8 @@ export default function QRGenerator() {
         <QRCodeCanvas
           value={text}
           size={300}
-          bgColor="#ffffff"
-          fgColor="#000000"
+          fgColor="#ffffff"
+          bgColor="#000000"
           level="L"
         />
       )}
