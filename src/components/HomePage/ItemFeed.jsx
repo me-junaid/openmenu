@@ -28,27 +28,43 @@ export const ItemFeed = () => {
                 <p className={`text-center text-xl ${(item.selectionCount > 0) ? "flex" : "hidden"}`}>{item.selectionCount}</p>
               </div>
 
-              <div className={`${(item.selectionCount > 0) ? "flex" : "hidden"} h-7 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300`} onClick={() => {
-                updateSelectionCount(
-                  user.categories[selectedCategory].id,
-                  item.name,
-                  "decrement"
-                )
-                console.log(item.selectionCount);
-              }
-              }>
+              <div className={`${(item.selectionCount > 0) ? "flex" : "hidden"}  h-7 min-w-7 ml-3 rounded-full 
+    border-2 border-green-200 
+    flex justify-center items-center 
+    text-green-300 cursor-pointer
+    transition-all duration-150
+    active:scale-90 
+    active:bg-green-200/20
+    hover:bg-green-200/10`} onClick={() => {
+                  updateSelectionCount(
+                    user.categories[selectedCategory].id,
+                    item.name,
+                    "decrement"
+                  )
+                  console.log(item.selectionCount);
+                }
+                }>
                 <Minus height={25} width={25} />
               </div>
 
-              <div className="h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full border-2 border-green-200 flex justify-center items-center text-green-300"
+              <div
                 onClick={() => {
                   updateSelectionCount(
                     user.categories[selectedCategory].id,
                     item.name,
                     "increment"
                   );
-                  console.log(item.selectionCount);
                 }}
+                className="
+    h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full 
+    border-2 border-green-200 
+    flex justify-center items-center 
+    text-green-300 cursor-pointer
+    transition-all duration-150
+    active:scale-90 
+    active:bg-green-200/20
+    hover:bg-green-200/10
+  "
               >
                 <Plus height={25} width={25} />
               </div>
