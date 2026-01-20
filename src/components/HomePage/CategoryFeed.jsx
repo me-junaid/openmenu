@@ -1,6 +1,7 @@
 import { useCallback, useContext } from "react";
 import { ItemsContext } from "../../contexts/ItemsContext";
 import { Menu } from "../Icons/Menu";
+import { Waiter } from "../Icons/Waiter";
 
 
 
@@ -62,13 +63,15 @@ export const CategoryFeed = () => {
       </div>
       <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-16 bg-black p-3 pt-1 justify-between`}>
         <div className=" flex justify-center items-center">
-          {selectedItems.length} . {selectedItems.length === 1 ? "Item" : "Items"} |
+          {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} ●
         </div>
-        <button className="ml-1 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-green-900/9 w-20 text-white/87 border-green-200 border  text-lg font-bold rounded-2xl flex justify-center items-center" onClick={() => updateOpenCart()}>
-          View <span><Menu /></span>
+        <button className="ml-1 p-2 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-green-900/9 w-20 text-white/87 border-green-200 border-2  text-lg font-bold rounded-2xl flex justify-between items-center" onClick={() => updateOpenCart()}>
+          <div className="grow">View</div>
+          <span><Menu /></span>
         </button>
-        <button className="ml-auto bg-green-200 px-7 text-black border-yellow-200 border  text-lg font-bold rounded-2xl">
-          Call waiter
+        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center">
+          <Waiter size={25} />
+          <p className="">Call waiter</p>
         </button>
       </div>
     </div>
