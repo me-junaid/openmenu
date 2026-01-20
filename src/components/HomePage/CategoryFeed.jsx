@@ -6,7 +6,7 @@ import { SelectedItems } from "./SelectedItems";
 
 export const CategoryFeed = () => {
 
-  const { user, selectedCategory, setSelectedCategory, selectedItems } = useContext(ItemsContext);
+  const { user, selectedCategory, setSelectedCategory, selectedItems, updateOpenCart } = useContext(ItemsContext);
   const items = user.categories;
 
 
