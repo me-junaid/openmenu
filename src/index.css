@@ -15,9 +15,14 @@
 body {
   background-color: var(--primary-background);
   color: var(--primary-text);
+  user-select: none;
 }
 
 header {
+  font-family: "StackSansText", sans-serif;
+}
+
+.my-font {
   font-family: "StackSansText", sans-serif;
 }
 
@@ -33,14 +38,13 @@ header {
 
 
 .hide-scrollbar {
-  -ms-overflow-style: none;  /* IE & Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  /* IE & Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;             /* Chrome, Safari, Android */
-}
-
-body{
-  user-select: none;
+  display: none;
+  /* Chrome, Safari, Android */
 }
