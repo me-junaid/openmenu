@@ -10,6 +10,7 @@ export const OrderSelection = () => {
 
   const { selectedItems, orderSelection, updateOrderSelection, confirmOrder, updateConfirmOrder } = useContext(ItemsContext);
 
+  
 
   return (
     <div className={`${orderSelection ? "top-[50px] fixed inset-0 bg-black flex flex-col " : "hidden"}`}>
@@ -54,15 +55,17 @@ export const OrderSelection = () => {
           )}
         </div>
       </div>
-      <div className={`flex min-h-16 bg-black p-3 pt-1 justify-between`}>
+
+      <div className={`flex h-13 bg-black p-3 pb-1 pt-0 justify-between`}>
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} selected
         </div>
-        <button className={`${(confirmOrder) ? "bg-green-500" : " active:bg-green-200 duration-200  "} bg-gray-200/90 ml-auto pl-2 pr-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center`} onClick={() => updateConfirmOrder()}>
+        <button className={`${(confirmOrder) ? "bg-green-500 " : " active:bg-green-200 duration-200  "} bg-green-400 ml-auto pl-2 pr-3 text-black border-green-900 border-2  text-lg font-bold rounded-xl flex items-center justify-center`} onClick={() => updateConfirmOrder()}>
           <Check size={35} />
-          <p className="">{(confirmOrder? "" : "Confirm Order")}</p>
+          <p className="">{(confirmOrder ? "" : "Confirm Order")}</p>
         </button>
       </div>
+
     </div>
   )
 }

@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { ItemsContext } from '../../contexts/ItemsContext';
 import { Menu } from '../Icons/Menu';
 import { Waiter } from '../Icons/Waiter';
 import { Close } from '../Icons/Close';
+import { NavForCatergory } from './NavForCatergory';
 
 export const SelectedItems = () => {
 
-  const { selectedItems, openCart, updateOpenCart } = useContext(ItemsContext);
+  const { user, selectedCategory, setSelectedCategory, selectedItems, updateOpenCart, updateOrderSelection, openCart } = useContext(ItemsContext);
+  const items = user.categories;
 
 
   return (
@@ -32,19 +34,25 @@ export const SelectedItems = () => {
         }
         )}
       </div>
-      <div className={`flex min-h-16 bg-black p-3 pt-1 justify-between`}>
+
+
+      <div className={`flex h-13 bg-black p-3 pb-1 pt-0 justify-between`}>
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} ●
         </div>
-        <button className="ml-1 p-2 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-red-900 w-20 text-white/87 border-green-200 border-2  text-lg font-bold rounded-2xl flex items-center justify-between" onClick={() => updateOpenCart()}>
-          <div className="p">Close</div>
-          <span><Menu /></span>
+        <button className="ml-1 p-1 active:bg-green-200/9 bg-red-900 active:border-yellow-200 duration-200 w-20 text-white/87 border-green-200 border-2  text-lg font-bold rounded-xl flex justify-between items-center" onClick={() => updateOpenCart()}>
+          <div className="grow text-sm">Close</div>
+          <span><Menu width={20} height={20} /></span>
         </button>
-        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200  px-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center">
+        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-xl flex items-center justify-center" onClick={() => updateOrderSelection()}>
           <Waiter size={25} />
           <p className="">Call waiter</p>
         </button>
       </div>
+
+
+      <NavForCatergory />
+
     </div>
   )
 }
