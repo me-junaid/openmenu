@@ -16,7 +16,7 @@ export const ItemFeed = () => {
       <div className='p-2 mt-0 space-y-2 mb-[230px] rounded-2xl '>
         {itemsInMenus.map((item, index) => (
           <div key={index} className='bg-[#020901] py-2 pl-2 pr-3 rounded-2xl flex'>
-            <div className="w-23 h-23 bg-white rounded-2xl shrink-0"></div>
+            <div className="w-23 h-23 bg-[#0b0e0a] rounded-2xl shrink-0"></div>
             <div className="grow ml-3">
               <p className='text-xl font-semibold text-green-200'>{item.name}</p>
               <p className='text-gray-200'>₹{item.price}</p>
