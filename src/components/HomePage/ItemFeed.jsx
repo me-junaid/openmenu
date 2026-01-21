@@ -39,7 +39,7 @@ export const ItemFeed = () => {
               <div
                 className={`
     h-7 min-w-7 ml-3 rounded-full
-    border-2 border-green-400
+    border-2 border-green-200/20 
     flex justify-center items-center
     text-green-300 cursor-pointer
     transition-all duration-100
@@ -73,7 +73,7 @@ export const ItemFeed = () => {
                 }}
                 className="
     h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full 
-    border-2 border-green-200 
+    border-2 border-green-200/50 
     flex justify-center items-center 
     text-green-300 cursor-pointer
     transition-all duration-100

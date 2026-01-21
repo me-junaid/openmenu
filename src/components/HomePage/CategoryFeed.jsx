@@ -36,8 +36,8 @@ export const CategoryFeed = () => {
         const baseClasses =
           "p-0.5 flex flex-col justify-center items-center shrink-0 rounded-xl snap-center transition-transform duration-150 min-w-22";
         const selectedClasses = isSelected
-          ? "scale-100 border-2 border-[#6f6f6f] bg-yellow-200"
-          : "scale-100 border-2 border-[#6f6f6f00] bg-[#161616]/90";
+          ? "scale-100 border-2 border-yellow-200 bg-[#161616]"
+          : "scale-100 border-2 border-[#6f6f6f00] bg-[#161616]/0";
 
         return (
           <div
@@ -56,7 +56,7 @@ export const CategoryFeed = () => {
             className={`${baseClasses} ${selectedClasses}`}
           >
             <div className="bg-gray-700 w-18 aspect-square rounded-lg" />
-            <div className={`${isSelected ? "text-black" : ""} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
+            <div className={`${isSelected ? "text-yellow-200" : ""} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
           </div>
         );
       })}

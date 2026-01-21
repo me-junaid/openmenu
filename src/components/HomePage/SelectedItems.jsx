@@ -35,7 +35,7 @@ export const SelectedItems = () => {
       </div>
 
 
-      <div className={`flex h-10 bg-black p-3 pb-0 pt-1 justify-between`}>
+      <div className={`flex h-10 bg-black p-3 pb-0 pt-1 justify-between fixed bottom-[110px] left-0 right-0`}>
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} ●
         </div>
@@ -49,8 +49,6 @@ export const SelectedItems = () => {
         </button>
       </div>
 
-
-      <div className="h-[110px]"></div>
 
     </div>
   )
