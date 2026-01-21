@@ -32,14 +32,14 @@ export const CategoryFeed = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0">
       <div
-        className=" p-3 pt-1 bg-black flex justify-around gap-3 overflow-x-auto snap-x snap-mandatory hide-scrollbar"
+        className=" pl-2 py-1 bg-black flex justify-around gap-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar"
         role="list"
         aria-label="Category feed"
       >
         {items.map((item, index) => {
           const isSelected = index === selectedCategory;
           const baseClasses =
-            "p-0.5 flex flex-col justify-center items-center shrink-0 rounded-xl snap-center transition-transform duration-150";
+            "p-0.5 flex flex-col justify-center items-center shrink-0 rounded-xl snap-center transition-transform duration-150 min-w-22";
           const selectedClasses = isSelected
             ? "scale-100 border-2 border-[#6f6f6f] bg-yellow-200"
             : "scale-100 border-2 border-[#6f6f6f00] bg-[#161616]/90";
@@ -55,13 +55,13 @@ export const CategoryFeed = () => {
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={`${baseClasses} ${selectedClasses}`}
             >
-              <div className="bg-gray-700 w-20 aspect-square rounded-lg" />
+              <div className="bg-gray-700 w-18 aspect-square rounded-lg" />
               <div className={`${isSelected ? "text-black" : ""} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
             </div>
           );
         })}
       </div>
-      <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-13 bg-black p-3 pt-0 justify-between`}>
+      <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-13 bg-black p-3 pb-1 pt-0 justify-between`}>
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} ●
         </div>

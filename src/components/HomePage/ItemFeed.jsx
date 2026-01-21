@@ -12,15 +12,23 @@ export const ItemFeed = () => {
 
   return (
     <>
-      <h2 className='text-2xl font-bold px-8 text-center my-font text-green-200'>{categoryName}</h2>
-      <div className='p-2 mt-0 space-y-2 mb-[230px] rounded-2xl '>
+      <h2 className="
+  font-bold px-8 my-font 
+  text-white text-4xl
+  text-center
+  animate-pulse-glow
+">
+        {categoryName}
+      </h2>
+
+      <div className='px-2 mt-0 space-y-1 mb-[230px] rounded-2xl -z-1'>
         {itemsInMenus.map((item, index) => (
-          <div key={index} className='bg-[#020901] py-2 pl-2 pr-3 rounded-2xl flex'>
-            <div className="w-23 h-23 bg-[#0b0e0a] rounded-2xl shrink-0"></div>
+          <div key={index} className='bg-[#020901]  pr-3 rounded-2xl flex items-center'>
+            <div className="w-23 h-26 bg-[#0b0e0a] rounded-2xl shrink-0"></div>
             <div className="grow ml-3">
-              <p className='text-xl font-semibold text-green-200'>{item.name}</p>
-              <p className='text-gray-200'>₹{item.price}</p>
-              <p className='line-clamp-2 text-xs text-[#959595]'>12345678 90123456 789456784 567845678456 78khk hjkkhkh</p>
+              <p className='text-lg font-semibold text-green-200'>{item.name}</p>
+              <p className='text-gray-200 text-xs'>₹{item.price}</p>
+              <p className='line-clamp-2 text-[#6e6e6e] text-xs'>12345678 90123456 789456784 567845678456 78khk hjkkhkh</p>
             </div>
             <div className="flex flex-col gap-1 shrink-0">
 
