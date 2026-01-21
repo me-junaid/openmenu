@@ -39,9 +39,9 @@ export const CategoryFeed = () => {
         {items.map((item, index) => {
           const isSelected = index === selectedCategory;
           const baseClasses =
-            "p-2 flex flex-col justify-center items-center shrink-0 rounded-xl snap-center transition-transform duration-150";
+            "p-0.5 flex flex-col justify-center items-center shrink-0 rounded-xl snap-center transition-transform duration-150";
           const selectedClasses = isSelected
-            ? "scale-100 border-2 border-[#6f6f6f] bg-[#161616]"
+            ? "scale-100 border-2 border-[#6f6f6f] bg-yellow-200"
             : "scale-100 border-2 border-[#6f6f6f00] bg-[#161616]/90";
 
           return (
@@ -55,21 +55,21 @@ export const CategoryFeed = () => {
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={`${baseClasses} ${selectedClasses}`}
             >
-              <div className="bg-gray-700 w-20 aspect-square rounded-md" />
-              <div className={`${isSelected ? "text-yellow-200" : ""} font-semibold text-sm my-0.5 text-center`}>{item.name}</div>
+              <div className="bg-gray-700 w-20 aspect-square rounded-lg" />
+              <div className={`${isSelected ? "text-black" : ""} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
             </div>
           );
         })}
       </div>
-      <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-16 bg-black p-3 pt-1 justify-between`}>
+      <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-13 bg-black p-3 pt-0 justify-between`}>
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} ●
         </div>
-        <button className="ml-1 p-2 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-green-900/9 w-20 text-white/87 border-green-200 border-2  text-lg font-bold rounded-2xl flex justify-between items-center" onClick={() => updateOpenCart()}>
-          <div className="grow">View</div>
-          <span><Menu /></span>
+        <button className="ml-1 p-1 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-green-900/9 w-20 text-white/87 border-green-200 border-2  text-lg font-bold rounded-xl flex justify-between items-center" onClick={() => updateOpenCart()}>
+          <div className="grow text-sm">View</div>
+          <span><Menu width={20} height={20}/></span>
         </button>
-        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-2xl flex items-center justify-center" onClick={() => updateOrderSelection()}>
+        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-xl flex items-center justify-center" onClick={() => updateOrderSelection()}>
           <Waiter size={25} />
           <p className="">Call waiter</p>
         </button>
