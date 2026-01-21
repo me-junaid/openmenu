@@ -3,7 +3,6 @@ import { ItemsContext } from '../../contexts/ItemsContext';
 import { Menu } from '../Icons/Menu';
 import { Waiter } from '../Icons/Waiter';
 import { Close } from '../Icons/Close';
-import { NavForCatergory } from './NavForCatergory';
 
 export const SelectedItems = () => {
 
@@ -36,7 +35,7 @@ export const SelectedItems = () => {
       </div>
 
 
-      <div className={`flex h-13 bg-black p-3 pb-1 pt-0 justify-between`}>
+      <div className={`flex h-10 bg-black p-3 pb-0 pt-1 justify-between`}>
         <div className=" flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} ●
         </div>
@@ -44,14 +43,14 @@ export const SelectedItems = () => {
           <div className="grow text-sm">Close</div>
           <span><Menu width={20} height={20} /></span>
         </button>
-        <button className="ml-auto bg-green-200/80 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-xl flex items-center justify-center" onClick={() => updateOrderSelection()}>
+        <button className="ml-auto bg-yellow-200 active:bg-green-200 duration-200 px-3 text-black border-green-900 border-2  text-lg font-bold rounded-xl flex items-center justify-center" onClick={() => updateOrderSelection()}>
           <Waiter size={25} />
-          <p className="">Call waiter</p>
+          <p className="text-sm font-bold">Call waiter</p>
         </button>
       </div>
 
 
-      <NavForCatergory />
+      <div className="h-[110px]"></div>
 
     </div>
   )

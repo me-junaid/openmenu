@@ -21,7 +21,7 @@ export const ItemFeed = () => {
         {categoryName}
       </h2>
 
-      <div className='px-2 mt-0 space-y-1 mb-[230px] rounded-2xl -z-1'>
+      <div className='px-2 mt-0 space-y-1 mb-[150px] rounded-2xl -z-1'>
         {itemsInMenus.map((item, index) => (
           <div key={index} className='bg-[#020901]  pr-3 rounded-2xl flex items-center'>
             <div className="w-26 h-26 bg-[#0b0e0a] rounded-2xl shrink-0"></div>

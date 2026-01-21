@@ -1,6 +1,7 @@
 import { Header } from "../components/Header"
 import { CategoryFeed } from "../components/HomePage/CategoryFeed"
 import { ItemFeed } from "../components/HomePage/ItemFeed"
+import { NavForCatergory } from "../components/Utilis/NavForCatergory"
 import { OrderSelection } from "../components/HomePage/OrderSelection"
 import { PromoBanner } from "../components/HomePage/PromoBanner"
 import { SelectedItems } from "../components/HomePage/SelectedItems"
@@ -16,10 +17,11 @@ export const HomePage = () => {
           <PromoBanner />
           <ItemFeed />
         </div>
-        <CategoryFeed />
+        <NavForCatergory />
         <SelectedItems />
         <OrderSelection />
       </div>
+      <CategoryFeed />
     </ItemsProvider>
   )
 }
