@@ -6,7 +6,7 @@ import { Minus } from '../Icons/Minus';
 
 export const ItemFeed = () => {
 
-  const { user, selectedCategory, updateSelectionCount, selectedItems } = useContext(ItemsContext);
+  const { user, selectedCategory, updateSelectionCount, selectedItems, confirmOrder } = useContext(ItemsContext);
   const categoryName = user.categories[selectedCategory].name;
   const itemsInMenus = user.categories[selectedCategory].items;
 
@@ -30,7 +30,7 @@ export const ItemFeed = () => {
               <p className='text-gray-200 text-xs'>₹{item.price}</p>
               <p className='line-clamp-2 text-[#6e6e6e] text-xs'>12345678 90123456 789456784 567845678456 78khk hjkkhkh</p>
             </div>
-            <div className="flex flex-col gap-1 shrink-0">
+            <div className={`${confirmOrder ? "hidden" : "flex" } flex-col gap-1 shrink-0`}>
 
               <div className="ml-3 flex justify-center items-center font-bold">
                 <p className={`text-center text-xl text-white ${(item.selectionCount > 0) ? "opacity-100 block" : "opacity-0"}`}>{item.selectionCount}</p>
