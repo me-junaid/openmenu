@@ -3,15 +3,9 @@ import { ItemsContext } from "../../contexts/ItemsContext";
 
 export const CategoryFeed = () => {
 
-  const { user, selectedCategory, setSelectedCategory, openCart, updateOpenCart, orderSelection } = useContext(ItemsContext);
+  const { user, selectedCategory, openCart, updateOpenCart, orderSelection, handleSelect } = useContext(ItemsContext);
   const items = user.categories;
 
-  const handleSelect = useCallback((index) => {
-    setSelectedCategory(index);
-    // optional: scroll the selected item into view
-    const el = document.getElementById(`cat-item-${index}`);
-    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  }, []);
 
   const handleKeyDown = useCallback(
     (e, index) => {
@@ -27,7 +21,7 @@ export const CategoryFeed = () => {
   return (
     <div
 
-      className={`${orderSelection ? "hidden" : "fixed h-[110px] bottom-0 left-0 right-0 px-2 py-1 bg-black flex justify-around gap-1 overflow-x-auto snap-x snap-mandatory hide-scrollbar"}`}
+      className={`${orderSelection ? "hidden" : "fixed h-[110px] bottom-0 left-0 right-0 px-2 py-1 bg-black flex justify-around overflow-x-auto snap-x snap-mandatory hide-scrollbar"}`}
       role="list"
       aria-label="Category feed"
     >

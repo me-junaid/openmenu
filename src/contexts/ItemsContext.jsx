@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 
 export const ItemsContext = createContext();
 
@@ -215,6 +215,13 @@ export const ItemsProvider = ({ children }) => {
     setConfirmOrder(true)
   }
 
+  const handleSelect = useCallback((index) => {
+    setSelectedCategory(index);
+    // optional: scroll the selected item into view
+    const el = document.getElementById(`cat-item-${index}`);
+    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+  }, []);
+
   return (
     <ItemsContext.Provider value={{
       user,
@@ -227,7 +234,8 @@ export const ItemsProvider = ({ children }) => {
       orderSelection,
       updateOrderSelection,
       confirmOrder,
-      updateConfirmOrder
+      updateConfirmOrder,
+      handleSelect
     }}>
       {children}
     </ItemsContext.Provider>

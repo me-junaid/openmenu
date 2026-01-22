@@ -3,11 +3,11 @@ import { ItemsContext } from '../../contexts/ItemsContext';
 import { Menu } from '../Icons/Menu';
 import { Waiter } from '../Icons/Waiter';
 import { Close } from '../Icons/Close';
+import { ArrowRight } from '../Icons/ArrowRight';
 
 export const SelectedItems = () => {
 
-  const { user, selectedCategory, setSelectedCategory, selectedItems, updateOpenCart, updateOrderSelection, openCart } = useContext(ItemsContext);
-  const items = user.categories;
+  const { selectedItems, updateOpenCart, updateOrderSelection, openCart, handleSelect } = useContext(ItemsContext);
 
 
   return (
@@ -19,15 +19,27 @@ export const SelectedItems = () => {
           <span><Close /></span>
         </button>
       </div>
-      <div className=" p-2 flex flex-col gap-2 grow overflow-y-scroll hide-scrollbar">
+
+      <div className="flex justify-between px-7 text-gray-300 mt-5 text-xs mb-1">
+        <p>Item</p>
+        <p>Quantity</p>
+      </div>
+
+      <div className=" p-2 pb-40 flex flex-col gap-1 grow overflow-y-scroll hide-scrollbar">
         {selectedItems.map((item) => {
           return (
-            <div className="bg-green-900/9 p-3 flex justify-between items-center rounded-lg" key={item.name}>
+            <div className="bg-green-900/9 pl-5 pr-2 py-2 flex justify-between items-center rounded-lg" key={item.name} onClick={() => {
+              handleSelect(item.categoryId - 1)
+              updateOpenCart()
+            }}>
               <div className="">
-                <div> {item.name}</div>
+                <div className='my-font text-sm'> {item.name}</div>
                 <div className="text-xs">₹{item.price}</div>
               </div>
-              <div className="text-xl">x {item.quantity}</div>
+              <div className="text-xl ml-auto mb-1">x {item.quantity}</div>
+              <div className="w-7 h-7 bg-green-900/10 rounded-full ml-2 flex items-center justify-center text-gray-500">
+                <ArrowRight />
+              </div>
             </div>
           )
         }

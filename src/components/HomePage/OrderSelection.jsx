@@ -5,19 +5,20 @@ import { Waiter } from '../Icons/Waiter';
 import { Close } from '../Icons/Close';
 import QRGenerator from '../Utilis/QRGenerator';
 import { Check } from '../Icons/Check';
+import { ArrowRight } from '../Icons/ArrowRight';
 
 export const OrderSelection = () => {
 
-  const { selectedItems, orderSelection, updateOrderSelection, confirmOrder, updateConfirmOrder } = useContext(ItemsContext);
+  const { selectedItems, orderSelection, updateOrderSelection, confirmOrder, updateConfirmOrder, handleSelect } = useContext(ItemsContext);
 
-  
+
 
   return (
     <div className={`${orderSelection ? "top-[50px] fixed inset-0 bg-black flex flex-col " : "hidden"}`}>
       <div className="flex items-center p-3 pb-0 pt-8 gap-2">
         <Menu width={30} height={30} />
         <h1 className="font-bold text-4xl my-font">Place Order</h1>
-        <button className={`${(confirmOrder) ? "hidden" : " flex"} ml-auto p-2 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-red-900/40 text-white/87  text-lg font-bold rounded-full items-center justify-between`} onClick={() => updateOrderSelection()}>
+        <button className={`${(confirmOrder) ? "flex" : " flex"} ml-auto p-2 active:bg-green-200/9 active:border-yellow-200 duration-200 bg-red-900/40 text-white/87  text-lg font-bold rounded-full items-center justify-between`} onClick={() => updateOrderSelection()}>
           <span><Close /></span>
         </button>
       </div>
@@ -36,19 +37,31 @@ export const OrderSelection = () => {
           Show this QR code to the waiter to place your order.
         </p>
 
-        <div className="flex justify-between px-3 text-gray-300 mt-5 text-xs mb-1">
+        <div className="flex justify-between px-5 text-gray-300 mt-5 text-xs mb-1">
           <p>Item</p>
           <p>Quantity</p>
         </div>
         <div className="flex flex-col gap-2 ">
           {selectedItems.map((item) => {
             return (
-              <div className="bg-green-900/9 p-3 flex justify-between items-center rounded-lg" key={item.name}>
-                <div>
-                  <div> {item.name}</div>
+              <div className={`${(confirmOrder ? "pr-5" : "pr-2" )} bg-green-900/9 pl-5 py-2 flex justify-between items-center rounded-lg`} key={item.name} onClick={() => {
+                if (!confirmOrder) {
+                  updateOrderSelection()
+                  setTimeout(() => {
+                    handleSelect(item.categoryId - 1)
+                  }, 5);
+                }
+              }}>
+                <div className="">
+                  <div className='my-font text-sm'> {item.name}</div>
                   <div className="text-xs">₹{item.price}</div>
                 </div>
-                <div className="text-xl">x {item.quantity}</div>
+                <div className="text-xl ml-auto mb-1">x {item.quantity}</div>
+                {(!confirmOrder) &&
+                  <div className="w-7 h-7 bg-green-900/10 rounded-full ml-2 flex items-center justify-center text-gray-500">
+                    <ArrowRight />
+                  </div>
+                }
               </div>
             )
           }
