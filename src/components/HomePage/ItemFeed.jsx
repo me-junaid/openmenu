@@ -4,7 +4,7 @@ import { Plus } from '../Icons/Plus';
 import { Minus } from '../Icons/Minus';
 
 
-export const ItemFeed = () => {
+export const ItemFeed = ({ admin = false }) => {
 
   const { user, selectedCategory, updateSelectionCount, selectedItems, confirmOrder } = useContext(ItemsContext);
   const categoryName = user.categories[selectedCategory].name;
@@ -12,16 +12,11 @@ export const ItemFeed = () => {
 
   return (
     <>
-      <h2 className="
-  font-bold px-8 my-font 
-  text-white text-4xl
-  text-center
-  animate-pulse-glow
-">
+      <h2 className="font-bold px-8 my-font text-white text-4xl text-center animate-pulse-glow">
         {categoryName}
       </h2>
 
-      <div className='px-2 mt-0 space-y-1 mb-[150px] rounded-2xl -z-1'>
+      <div className={`${admin ? "mb-[170px]" : "mb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
           <div key={index} className='bg-[#020901]  pr-3 rounded-2xl flex items-center'>
             <div className="w-26 h-26 bg-[#0b0e0a] rounded-2xl shrink-0"></div>
@@ -30,7 +25,7 @@ export const ItemFeed = () => {
               <p className='text-gray-200 text-xs'>₹{item.price}</p>
               <p className='line-clamp-2 text-[#6e6e6e] text-xs'>12345678 90123456 789456784 567845678456 78khk hjkkhkh</p>
             </div>
-            <div className={`${confirmOrder ? "hidden" : "flex" } flex-col gap-1 shrink-0`}>
+            <div className={`${confirmOrder || admin ? "hidden" : "flex"} flex-col gap-1 shrink-0`}>
 
               <div className="ml-3 flex justify-center items-center font-bold">
                 <p className={`text-center text-xl text-white ${(item.selectionCount > 0) ? "opacity-100 block" : "opacity-0"}`}>{item.selectionCount}</p>

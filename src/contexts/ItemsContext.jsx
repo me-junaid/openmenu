@@ -114,6 +114,20 @@ export const ItemsProvider = ({ children }) => {
           { name: "Ghee Rice", price: 110, img: "", selectionCount: 0 },
         ],
       },
+      {
+        id: 9,
+        name: "Hot Drinks",
+        items: [
+          { name: "Tea", price: 12, img: "", selectionCount: 0 },
+          { name: "Black Tea", price: 15, img: "", selectionCount: 0 },
+          { name: "Masala Tea", price: 18, img: "", selectionCount: 0 },
+          { name: "Coffee", price: 15, img: "", selectionCount: 0 },
+          { name: "Filter Coffee", price: 20, img: "", selectionCount: 0 },
+          { name: "Boost", price: 150, img: "", selectionCount: 0 },
+          { name: "Horlicks", price: 140, img: "", selectionCount: 0 },
+          { name: "Hot Chocolate", price: 120, img: "", selectionCount: 0 },
+        ],
+      },
     ],
   };
 
