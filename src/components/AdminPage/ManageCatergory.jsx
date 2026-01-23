@@ -12,9 +12,9 @@ export const ManageCatergory = ({ admin }) => {
 
   return (
     <>
-      <h1 className="mt-[60px] text-4xl my-font ml-4 mb-2">Category</h1>
+      <h1 className="mt-2.5 text-4xl my-font ml-4 mb-2">Category</h1>
       <div
-        className="sticky top-[50px]"
+        className="sticky top-0"
         role="list"
         aria-label="Category feed"
       >
@@ -59,7 +59,7 @@ export const ManageCatergory = ({ admin }) => {
       <h1 className="mt-2.5 text-2xl my-font ml-4 mb-2">Items in <span className="text-yellow-200 my-font animate-pulse-glow">{categoryName}</span></h1>
 
       <div>
-        <div className="mb-[65px] mt-0 space-y-0.5 rounded-2xl -z-1">
+        <div className="mb-[57px] mt-0 space-y-0.5 rounded-2xl -z-1">
           {itemsInMenus.map((item, index) => (
             <div key={index} className='bg-[#020901]  pr-3 flex items-center'>
               <div className="w-20 h-20 bg-[#0b0e0a] rounded-r-lg shrink-0"></div>

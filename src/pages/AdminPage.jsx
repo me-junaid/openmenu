@@ -11,8 +11,10 @@ export const AdminPage = () => {
   return (
     <AdminProvider>
       <Header />
-      <AdminMain />
-      <AdminFooter />
+      <div className="fixed top-[50px] bottom-0 left-0 right-0 overflow-y-scroll">
+        <AdminMain />
+        <AdminFooter />
+      </div>
     </AdminProvider>
   )
 }

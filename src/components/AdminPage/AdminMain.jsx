@@ -13,7 +13,6 @@ export const AdminMain = () => {
   if (selectedByAdmin === 0) { // Restaurant
     return (
       <ItemsProvider>
-        <div className="h-10"></div>
         <PromoBanner />
         <ItemFeed admin={true} />
         <CategoryFeed admin={true} />
