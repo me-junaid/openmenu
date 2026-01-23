@@ -25,7 +25,7 @@ export const CategoryFeed = ({ admin }) => {
       role="list"
       aria-label="Category feed"
     >
-      <div className={`${admin && "pb-14"} px-2 py-1 bg-black flex justify-around overflow-x-auto snap-x snap-mandatory hide-scrollbar`}>
+      <div className={`${admin ? "pb-14 h-[160px]" : "h-[110px]" } px-2 py-1 bg-black flex justify-around overflow-x-auto snap-x snap-mandatory hide-scrollbar`}>
         {items.map((item, index) => {
           const isSelected = index === selectedCategory;
           const baseClasses =
