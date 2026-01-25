@@ -14,7 +14,7 @@ export const NavForCatergory = () => {
   return (
     <div className="fixed bottom-[110px] left-0 right-0 ">
 
-      <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-10 bg-black p-3 pb-0 pt-1 justify-between`}>
+      <div className={`${(selectedItems.length > 0 ? "flex" : "hidden")} h-10 dark:bg-black bg-white p-3 pb-0 pt-1 justify-between`}>
         <div className="ml-auto flex justify-center items-center">
           {selectedItems.length} {selectedItems.length === 1 ? "item" : "items"} ●
         </div>

@@ -12,32 +12,28 @@ export const ItemFeed = ({ admin = false }) => {
 
   return (
     <>
-      <h2 className="font-bold px-8 my-font text-white text-4xl text-center animate-pulse-glow">
+      <h2 className="font-bold px-8 my-font dark:text-white text-3xl text-left mb-2 dark:animate-pulse-glow">
         {categoryName}
       </h2>
 
       <div className={`${admin ? "mb-[170px]" : "mb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
-          <div key={index} className='bg-[#020901]  pr-3 rounded-2xl flex items-center'>
-            <div className="w-26 h-26 bg-[#0b0e0a] rounded-2xl shrink-0"></div>
+          <div key={index} className='dark:bg-[#020901] bg-[#02090104]  pr-3 rounded-2xl flex items-center'>
+            <div className="w-26 h-26 dark:bg-[#0b0e0a] bg-[#0b0e0a10] rounded-2xl shrink-0"></div>
             <div className="grow ml-3">
-              <p className='text-lg font-semibold text-green-200 my-font'>{item.name}</p>
-              <p className='text-gray-200 text-xs'>₹{item.price}</p>
+              <p className='text-lg font-semibold dark:text-green-200 my-font'>{item.name}</p>
+              <p className='dark:text-gray-200 text-xs'>₹{item.price}</p>
               <p className='line-clamp-2 text-[#6e6e6e] text-xs'>12345678 90123456 789456784 567845678456 78khk hjkkhkh</p>
             </div>
             <div className={`${confirmOrder || admin ? "hidden" : "flex"} flex-col gap-1 shrink-0`}>
 
               <div className="ml-3 flex justify-center items-center font-bold">
-                <p className={`text-center text-xl text-white ${(item.selectionCount > 0) ? "opacity-100 block" : "opacity-0"}`}>{item.selectionCount}</p>
+                <p className={`text-center text-xl dark:text-white ${(item.selectionCount > 0) ? "opacity-100 block" : "opacity-0"}`}>{item.selectionCount}</p>
               </div>
 
               <div
                 className={`
-    h-7 min-w-7 ml-3 rounded-full
-    border-2 border-green-200/20 
-    flex justify-center items-center
-    text-green-300 cursor-pointer
-    transition-all duration-100
+    h-7 min-w-7 ml-3 rounded-full border-2 dark:border-green-200/20 border-green-800/30 flex justify-center items-center dark:text-green-300 text-green-800 cursor-pointer transition-all duration-100
     ${item.selectionCount > 0
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-75 pointer-events-none"}
@@ -68,9 +64,9 @@ export const ItemFeed = ({ admin = false }) => {
                 }}
                 className="
     h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full 
-    border-2 border-green-200/50 
+    border-2 dark:border-green-200/20 border-green-800/50 
     flex justify-center items-center 
-    text-green-300 cursor-pointer
+    dark:text-green-300 text-green-800 cursor-pointer
     transition-all duration-100
     active:scale-90 
     active:bg-green-200/20
