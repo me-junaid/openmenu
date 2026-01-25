@@ -18,8 +18,8 @@ export const ItemFeed = ({ admin = false }) => {
 
       <div className={`${admin ? "mb-[170px]" : "mb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
-          <div key={index} className='dark:bg-[#020901] bg-[#02090104]  pr-3 rounded-2xl flex items-center'>
-            <div className="w-26 h-26 dark:bg-[#0b0e0a] bg-[#0b0e0a10] rounded-2xl shrink-0"></div>
+          <div key={index} className='bg-[#02090104] dark:bg-[#020901]   pr-3 rounded-2xl flex items-center'>
+            <div className="w-26 h-26  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-2xl shrink-0"></div>
             <div className="grow ml-3">
               <p className='text-lg font-semibold dark:text-green-200 my-font'>{item.name}</p>
               <p className='dark:text-gray-200 text-xs'>₹{item.price}</p>

@@ -11,7 +11,7 @@ export const OrderSelection = () => {
 
   const { selectedItems, orderSelection, updateOrderSelection, confirmOrder, updateConfirmOrder, handleSelect } = useContext(ItemsContext);
 
-  const userTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const userTheme = document.documentElement.classList.contains("dark");
 
   console.log(userTheme);
 

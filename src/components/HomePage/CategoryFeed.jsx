@@ -51,7 +51,7 @@ export const CategoryFeed = ({ admin }) => {
               className={`${baseClasses} ${selectedClasses}`}
             >
               <div className="dark:bg-gray-700 bg-gray-200 w-18 aspect-square rounded-lg" />
-              <div className={`${isSelected ? "dark:text-yellow-200" : ""} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
+              <div className={`${isSelected ? "dark:text-yellow-200 text-black" : "text-black/70 dark:text-white"} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
             </div>
           );
         })}

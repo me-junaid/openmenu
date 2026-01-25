@@ -7,13 +7,6 @@ export default defineConfig({
   plugins: [
     react(), tailwindcss()
   ],
-  theme: {
-    extend: {
-      fontFamily: {
-        myfont: ["StackSansText", "sans-serif"],
-      },
-    },
-  },
 })
 
 

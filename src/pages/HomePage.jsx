@@ -11,7 +11,7 @@ export const HomePage = () => {
   return (
     <ItemsProvider>
       <Header />
-      <div className="fixed top-[50px] bottom-0 left-0 right-0">
+      <div className="fixed top-[50px] bottom-0 left-0 right-0 dark:bg-black bg-white text-black dark:text-white">
         <div className="overflow-y-scroll h-full hide-scrollbar">
           <PromoBanner />
           <ItemFeed />
