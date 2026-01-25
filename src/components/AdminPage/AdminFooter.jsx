@@ -29,17 +29,17 @@ export const AdminFooter = () => {
   const { selectedByAdmin, handleAdminSelect } = useContext(AdminContext)
 
   return (
-    <div className='border-t bg-black py-1 border-yellow-200/20 fixed bottom-0 left-0 right-0 grid grid-cols-3 items-center'>
+    <div className='border-t py-1 bg-white dark:bg-black border-yellow-200/20 fixed bottom-0 left-0 right-0 grid grid-cols-3 items-center'>
 
       {restaurantFooter.map((item, index) => {
         const isSelected = index === selectedByAdmin;
 
         return (
-          <div key={index} className={`${isSelected ? "text-yellow-200" : ""} flex justify-center items-center flex-col`} onClick={() => handleAdminSelect(index)}>
+          <div key={index} className={`${isSelected ? "dark:text-yellow-200 text-green-600" : "text-black/60"} flex justify-center items-center flex-col`} onClick={() => handleAdminSelect(index)}>
             <div>
               {item.icon}
             </div>
-            <p className={`${isSelected ? 'text-yellow-200' : 'text-gray-400'} text-xs`}>{item.name}</p>
+            <p className={`${isSelected ? 'dark:text-yellow-200 text-black' : 'dark:text-gray-400'} text-xs`}>{item.name}</p>
           </div>
         )
       })}
