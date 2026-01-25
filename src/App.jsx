@@ -7,7 +7,6 @@ import { WaiterPage } from "./pages/WaiterPage";
 import { AdminPage } from "./pages/AdminPage";
 
 function App() {
-
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />

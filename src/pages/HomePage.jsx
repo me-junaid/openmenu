@@ -5,9 +5,19 @@ import { NavForCatergory } from "../components/Utilis/NavForCatergory"
 import { OrderSelection } from "../components/HomePage/OrderSelection"
 import { PromoBanner } from "../components/HomePage/PromoBanner"
 import { ItemsProvider } from "../contexts/ItemsContext"
+import { useEffect } from "react"
 
 
 export const HomePage = () => {
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+
   return (
     <ItemsProvider>
       <Header />
