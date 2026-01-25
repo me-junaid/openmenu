@@ -7,10 +7,6 @@ import { WaiterPage } from "./pages/WaiterPage";
 import { AdminPage } from "./pages/AdminPage";
 
 function App() {
-  // Explicitly set light theme once when App mounts
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark') // FORCE LIGHT
-  }, []);
 
   return (
     <Routes>
