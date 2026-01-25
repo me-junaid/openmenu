@@ -3,7 +3,7 @@ import { ItemsContext } from "../../contexts/ItemsContext";
 import { AdminContext } from "../../contexts/AdminContext";
 import { Plus } from "../Icons/Plus";
 
-export const ManageCatergory = ({ admin }) => {
+export const ManageCatergory = () => {
 
   const { user } = useContext(ItemsContext);
   const { selectedCategoryByAdmin, handleSelectedCategoryByAdmin } = useContext(AdminContext)

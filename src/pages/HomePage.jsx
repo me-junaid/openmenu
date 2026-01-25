@@ -4,7 +4,6 @@ import { ItemFeed } from "../components/HomePage/ItemFeed"
 import { NavForCatergory } from "../components/Utilis/NavForCatergory"
 import { OrderSelection } from "../components/HomePage/OrderSelection"
 import { PromoBanner } from "../components/HomePage/PromoBanner"
-import { SelectedItems } from "../components/HomePage/SelectedItems"
 import { ItemsProvider } from "../contexts/ItemsContext"
 
 
@@ -18,7 +17,6 @@ export const HomePage = () => {
           <ItemFeed />
         </div>
         <NavForCatergory />
-        <SelectedItems />
         <OrderSelection />
       </div>
       <CategoryFeed />
