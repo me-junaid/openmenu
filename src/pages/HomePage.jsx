@@ -12,9 +12,13 @@ export const HomePage = () => {
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
+    const systemDefault = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (theme === "dark" || theme !== "light" && systemDefault) {
       document.documentElement.classList.add("dark");
     }
+
+
   }, []);
 
 
