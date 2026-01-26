@@ -1,7 +1,7 @@
 
 import { Header } from '../components/Header'
 import { AdminFooter } from '../components/AdminPage/AdminFooter'
-import { AdminContext, AdminProvider } from '../contexts/AdminContext'
+import { AdminProvider } from '../contexts/AdminContext'
 import { AdminMain } from '../components/AdminPage/AdminMain'
 import { useContext, useEffect } from 'react'
 import { ItemsProvider } from '../contexts/ItemsContext'

@@ -6,6 +6,7 @@ import { ItemsProvider } from '../../contexts/ItemsContext'
 import { AdminContext, AdminProvider } from '../../contexts/AdminContext'
 import { ManageCatergory } from './ManageCatergory'
 import { AddCategory } from './AddCategory'
+import { AddNewItem } from './AddNewItem'
 
 export const AdminMain = () => {
 
@@ -27,6 +28,7 @@ export const AdminMain = () => {
         <ItemsProvider>
           <ManageCatergory />
           <AddCategory />
+          <AddNewItem />
         </ItemsProvider>
       </AdminProvider>
     )

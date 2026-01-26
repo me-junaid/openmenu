@@ -1,4 +1,4 @@
-import { createContext, useCallback, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 
 export const ItemsContext = createContext();
 
@@ -117,6 +117,8 @@ export const ItemsProvider = ({ children }) => {
     ],
   };
 
+
+
   // const sizeInBytes = new Blob([JSON.stringify(initialData)]).size;
   // const sizeInKB = (sizeInBytes / 1024).toFixed(2);
 
@@ -126,6 +128,33 @@ export const ItemsProvider = ({ children }) => {
   const [openCart, setOpenCart] = useState(false)
   const [orderSelection, setOrderSelection] = useState(false)
   const [confirmOrder, setConfirmOrder] = useState(false)
+
+  useEffect(() => {
+    function sortCategoriesBySelectionCount(data) {
+      return {
+        ...data,
+        categories: data.categories.map(category => ({
+          ...category,
+          items: [...category.items].sort(
+            (a, b) => b.selectionCount - a.selectionCount
+          )
+        }))
+      };
+    }
+
+    // function sortByCategoryThenQuantity(items) {
+    //   return [...items].sort((a, b) => {
+    //     if (a.categoryId !== b.categoryId) {
+    //       return a.categoryId - b.categoryId;
+    //     }
+    //     return b.quantity - a.quantity;
+    //   });
+    // }
+
+    // setSelectedItems(sortByCategoryThenQuantity(selectedItems))
+
+    setUser(sortCategoriesBySelectionCount(user))
+  }, [orderSelection])
 
   const [selectedItems, setSelectedItems] = useState([])
 
@@ -158,7 +187,6 @@ export const ItemsProvider = ({ children }) => {
           : category
       );
 
-      // 🔥 sync selectedItems
       if (updatedItem) {
         updateSelectedItems(categoryId, updatedItem);
       }
@@ -217,9 +245,12 @@ export const ItemsProvider = ({ children }) => {
 
   const handleSelect = useCallback((index) => {
     setSelectedCategory(index);
-    // optional: scroll the selected item into view
+
     const el = document.getElementById(`cat-item-${index}`);
     el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+
+    const catergoryName = document.getElementById(`catergory-name`);
+    catergoryName?.scrollIntoView({ behavior: "smooth", inline: "center", block: "center" });
   }, []);
 
   return (

@@ -10,6 +10,7 @@ export const AdminProvider = ({ children }) => {
   const [selectedCategoryByAdmin, setSelectedCategoryByAdmin] = useState(0)
 
   const [canAddCategory, setCanAddCategory] = useState(false)
+  const [canAddNewItem, setCanAddNewItem] = useState(true)
 
   const handleAdminSelect = useCallback((index) => {
     setSelectedByAdmin(index)
@@ -20,7 +21,7 @@ export const AdminProvider = ({ children }) => {
   }, [])
 
   return (
-    <AdminContext.Provider value={{ adminName, selectedByAdmin, handleAdminSelect, selectedCategoryByAdmin, handleSelectedCategoryByAdmin, canAddCategory, setCanAddCategory }}>
+    <AdminContext.Provider value={{ adminName, selectedByAdmin, handleAdminSelect, selectedCategoryByAdmin, handleSelectedCategoryByAdmin, canAddCategory, setCanAddCategory, canAddNewItem, setCanAddNewItem }}>
       {children}
     </AdminContext.Provider>
   )

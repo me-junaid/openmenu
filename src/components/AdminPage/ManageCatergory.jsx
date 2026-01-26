@@ -6,10 +6,12 @@ import { Plus } from "../Icons/Plus";
 export const ManageCatergory = () => {
 
   const { user } = useContext(ItemsContext);
-  const { selectedCategoryByAdmin, handleSelectedCategoryByAdmin, setCanAddCategory } = useContext(AdminContext)
+  const { selectedCategoryByAdmin, handleSelectedCategoryByAdmin, setCanAddCategory, setCanAddNewItem } = useContext(AdminContext)
   const items = user.categories;
   const categoryName = user.categories[selectedCategoryByAdmin].name;
   const itemsInMenus = user.categories[selectedCategoryByAdmin].items;
+
+
 
   return (
     <div className="dark:text-white dark:bg-black bg-white text-black ">
@@ -55,8 +57,12 @@ export const ManageCatergory = () => {
 
 
       </div>
-      <h1 className="mt-2.5 text-2xl my-font ml-4 mb-2 dark:text-white text-black">Items in <span className="dark:text-yellow-200 text-green-500 my-font dark:animate-pulse-glow">{categoryName}</span></h1>
-
+      <div className="flex justify-between items-center px-4">
+        <h1 className="mt-2.5 text-2xl my-font mb-2 dark:text-white text-black">Items in <span className="dark:text-yellow-200 text-green-500 my-font dark:animate-pulse-glow">{categoryName}</span></h1>
+        <button onClick={() => setCanAddNewItem(true)} className="my-font text-xs border-2 dark:border-yellow-100 border-green-500 p-1 rounded-full flex justify-center items-center" >
+          <Plus width={25} height={25} />
+        </button>
+      </div>
       <div>
         <div className="pb-[55px] mt-0 space-y-0.5 rounded-2xl -z-1">
           {itemsInMenus.map((item, index) => (

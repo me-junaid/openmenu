@@ -13,11 +13,9 @@ export const OrderSelection = () => {
 
   const userTheme = document.documentElement.classList.contains("dark");
 
-  console.log(userTheme);
-
 
   return (
-    <div className={`${orderSelection ? "top-[50px] fixed inset-0 dark:bg-black bg-white flex flex-col " : "hidden"}`}>
+    <div className={`${orderSelection ? "top-[50px] fixed inset-0 dark:bg-black text-black dark:text-white bg-white flex flex-col " : "hidden"}`}>
       <div className="flex items-center p-3 pb-0 pt-8 gap-2">
         <Menu width={30} height={30} />
         <h1 className="font-bold text-4xl my-font">Place Order</h1>

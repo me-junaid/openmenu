@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { ItemsContext } from '../../contexts/ItemsContext'
 import { Plus } from '../Icons/Plus';
 import { Minus } from '../Icons/Minus';
@@ -10,9 +10,10 @@ export const ItemFeed = ({ admin = false }) => {
   const categoryName = user.categories[selectedCategory].name;
   const itemsInMenus = user.categories[selectedCategory].items;
 
+
   return (
     <div className='dark:text-white dark:bg-black bg-white text-black '>
-      <h2 className="font-bold px-8 my-font dark:text-white text-3xl text-left mb-2 dark:animate-pulse-glow">
+      <h2 id='catergory-name' className="font-bold px-8 my-font dark:text-white text-3xl text-left mb-2 dark:animate-pulse-glow">
         {categoryName}
       </h2>
 
@@ -60,7 +61,10 @@ export const ItemFeed = ({ admin = false }) => {
                     "increment"
                   );
 
-                  console.log(selectedItems);
+                  selectedItems.map((item) => {
+                    console.log(item);
+                  })
+
                 }}
                 className="
     h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full 
