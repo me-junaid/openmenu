@@ -21,7 +21,7 @@ export const CategoryFeed = ({ admin }) => {
   return (
     <div
 
-      className={`${orderSelection ? "hidden" : "fixed  bottom-0 left-0 right-0"}`}
+      className={`${orderSelection ? "hidden" : "fixed  bottom-0 left-0 right-0"} `}
       role="list"
       aria-label="Category feed"
     >

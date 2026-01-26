@@ -6,16 +6,16 @@ import { Plus } from "../Icons/Plus";
 export const ManageCatergory = () => {
 
   const { user } = useContext(ItemsContext);
-  const { selectedCategoryByAdmin, handleSelectedCategoryByAdmin } = useContext(AdminContext)
+  const { selectedCategoryByAdmin, handleSelectedCategoryByAdmin, setCanAddCategory } = useContext(AdminContext)
   const items = user.categories;
   const categoryName = user.categories[selectedCategoryByAdmin].name;
   const itemsInMenus = user.categories[selectedCategoryByAdmin].items;
 
   return (
-    <>
-      <div className="flex items-center justify-between px-4 dark:text-white text-black ">
+    <div className="dark:text-white dark:bg-black bg-white text-black ">
+      <div className="flex items-center justify-between px-4">
         <h1 className="mt-2.5 text-4xl my-font mb-2">Category</h1>
-        <button className="my-font text-xs mt-2 border dark:border-yellow-100 border-green-500 py-0.5 px-2 rounded-full flex justify-center items-center">
+        <button onClick={() => setCanAddCategory(true)} className="my-font text-xs mt-2 border dark:border-yellow-100 border-green-500 py-0.5 px-2 rounded-full flex justify-center items-center" >
           <Plus width={25} height={25} />
           Add Category</button>
       </div>
@@ -72,6 +72,6 @@ export const ManageCatergory = () => {
           }
         </div >
       </div>
-    </>
+    </div>
   )
 }

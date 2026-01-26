@@ -5,6 +5,7 @@ import { PromoBanner } from '../HomePage/PromoBanner'
 import { ItemsProvider } from '../../contexts/ItemsContext'
 import { AdminContext, AdminProvider } from '../../contexts/AdminContext'
 import { ManageCatergory } from './ManageCatergory'
+import { AddCategory } from './AddCategory'
 
 export const AdminMain = () => {
 
@@ -25,6 +26,7 @@ export const AdminMain = () => {
       <AdminProvider>
         <ItemsProvider>
           <ManageCatergory />
+          <AddCategory />
         </ItemsProvider>
       </AdminProvider>
     )

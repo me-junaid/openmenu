@@ -11,12 +11,12 @@ export const ItemFeed = ({ admin = false }) => {
   const itemsInMenus = user.categories[selectedCategory].items;
 
   return (
-    <>
+    <div className='dark:text-white dark:bg-black bg-white text-black '>
       <h2 className="font-bold px-8 my-font dark:text-white text-3xl text-left mb-2 dark:animate-pulse-glow">
         {categoryName}
       </h2>
 
-      <div className={`${admin ? "mb-[170px]" : "mb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
+      <div className={`${admin ? "pb-[170px]" : "pb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
           <div key={index} className='bg-[#02090104] dark:bg-[#020901]   pr-3 rounded-2xl flex items-center'>
             <div className="w-26 h-26  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-2xl shrink-0"></div>
@@ -81,6 +81,6 @@ export const ItemFeed = ({ admin = false }) => {
         ))
         }
       </div >
-    </>
+    </div>
   )
 }
