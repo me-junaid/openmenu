@@ -35,7 +35,7 @@ export const AdminFooter = () => {
         const isSelected = index === selectedByAdmin;
 
         return (
-          <div key={index} className={`${isSelected ? "dark:text-yellow-200 text-green-600" : "text-black/60"} flex justify-center items-center flex-col`} onClick={() => handleAdminSelect(index)}>
+          <div key={index} className={`${isSelected ? "dark:text-yellow-200 text-green-600" : "dark:text-white/80 text-black/60"} flex justify-center items-center flex-col`} onClick={() => handleAdminSelect(index)}>
             <div>
               {item.icon}
             </div>

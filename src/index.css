@@ -14,6 +14,11 @@
   }
 }
 
+.dark {
+  background-color: #000000;
+  color: #ffffff;
+}
+
 body {
   background-color: var(--primary-background);
   color: var(--primary-text);
@@ -52,9 +57,12 @@ header {
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     text-shadow: 0 0 6px rgba(191, 243, 147, 0.6);
   }
+
   50% {
     text-shadow: 0 0 16px rgba(60, 50, 0, 0.9);
   }

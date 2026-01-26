@@ -13,9 +13,9 @@ export const ManageCatergory = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between px-4">
+      <div className="flex items-center justify-between px-4 dark:text-white text-black ">
         <h1 className="mt-2.5 text-4xl my-font mb-2">Category</h1>
-        <button className="my-font text-xs mt-2  border border-yellow-100 py-0.5 px-2 rounded-full flex justify-center items-center">
+        <button className="my-font text-xs mt-2 border dark:border-yellow-100 border-green-500 py-0.5 px-2 rounded-full flex justify-center items-center">
           <Plus width={25} height={25} />
           Add Category</button>
       </div>
@@ -31,7 +31,7 @@ export const ManageCatergory = () => {
             const baseClasses =
               "p-0.5 flex flex-col justify-center items-center shrink-0 rounded-xl snap-center transition-transform duration-150 min-w-22";
             const selectedClasses = isSelected
-              ? "border-2 dark:border-yellow-200 border-yellow-100 dark:bg-[#161616] bg-[#161616]/10"
+              ? "border-2 dark:border-yellow-200/0 border-yellow-100 dark:bg-[#161616] bg-[#161616]/10"
               : "border-2 border-[#6f6f6f00] bg-[#161616]/0";
 
             return (
@@ -47,7 +47,7 @@ export const ManageCatergory = () => {
                 className={`${baseClasses} ${selectedClasses}`}
               >
                 <div className="dark:bg-gray-700 bg-gray-200 w-18 aspect-square rounded-lg" />
-                <div className={`${isSelected ? "dark:text-yellow-200" : ""} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
+                <div className={`${isSelected ? "dark:text-yellow-200" : "dark:text-white"} font-bold text-xs my-0.5 text-center my-font`}>{item.name}</div>
               </div>
             );
           })}
@@ -55,7 +55,7 @@ export const ManageCatergory = () => {
 
 
       </div>
-      <h1 className="mt-2.5 text-2xl my-font ml-4 mb-2">Items in <span className="dark:text-yellow-200 text-green-500 my-font dark:animate-pulse-glow">{categoryName}</span></h1>
+      <h1 className="mt-2.5 text-2xl my-font ml-4 mb-2 dark:text-white text-black">Items in <span className="dark:text-yellow-200 text-green-500 my-font dark:animate-pulse-glow">{categoryName}</span></h1>
 
       <div>
         <div className="mb-[57px] mt-0 space-y-0.5 rounded-2xl -z-1">

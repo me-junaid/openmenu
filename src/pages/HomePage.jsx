@@ -18,7 +18,6 @@ export const HomePage = () => {
       document.documentElement.classList.add("dark");
     }
 
-
   }, []);
 
 
