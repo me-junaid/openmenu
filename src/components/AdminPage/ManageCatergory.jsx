@@ -58,7 +58,7 @@ export const ManageCatergory = () => {
       <h1 className="mt-2.5 text-2xl my-font ml-4 mb-2 dark:text-white text-black">Items in <span className="dark:text-yellow-200 text-green-500 my-font dark:animate-pulse-glow">{categoryName}</span></h1>
 
       <div>
-        <div className="mb-[57px] mt-0 space-y-0.5 rounded-2xl -z-1">
+        <div className="pb-[55px] mt-0 space-y-0.5 rounded-2xl -z-1">
           {itemsInMenus.map((item, index) => (
             <div key={index} className='dark:bg-[#020901] bg-[#02090105] pr-3 flex items-center'>
               <div className="w-20 h-20 dark:bg-[#0b0e0a] bg-[#0b0e0a10] rounded-r-lg shrink-0"></div>

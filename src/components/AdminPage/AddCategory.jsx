@@ -34,7 +34,7 @@ export const AddCategory = () => {
   if (!canAddCategory) return null
 
   return (
-    <div className="fixed justify-center items-center bottom-[50px] top-[50px] right-0 left-0 z-50 flex p-5 backdrop-blur-lg bg-black/40">
+    <div className="fixed justify-center items-center bottom-[50px] top-[50px] right-0 left-0 z-50 flex p-5 backdrop-blur-lg dark:bg-black/40 bg-white/40">
       <div
         className="
          max-w-xl mx-auto
@@ -91,7 +91,8 @@ export const AddCategory = () => {
       flex flex-col items-center justify-center
       w-[200px] aspect-square
       rounded-xl cursor-pointer
-      border border-white/30 dark:border-white/10
+    
+      border border-black/15 dark:border-white/15
       bg-white/40 dark:bg-black/40
       backdrop-blur-md
       text-sm text-black/70 dark:text-white/70
