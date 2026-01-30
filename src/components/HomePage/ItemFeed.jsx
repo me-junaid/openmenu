@@ -26,11 +26,11 @@ export const ItemFeed = ({ admin = false }) => {
               <p className='dark:text-gray-200 text-xs'>₹{item.price}</p>
               <p className='line-clamp-2 text-[#6e6e6e] text-xs'>Description</p>
             </div>
-            <div className={`${confirmOrder || admin ? "hidden" : "flex"} absolute transition-all duration-200 bottom-[5px] right-[5px] gap-1 shrink-0 border dark:border-white/40 border-black/40 rounded-md overflow-hidden`}>
+            <div className={`${confirmOrder || admin ? "hidden" : "flex"} absolute transition-all duration-200 bottom-[5px] right-[5px] shrink-0 border dark:border-white/40 border-black/40 rounded-md overflow-hidden`}>
 
               <div
                 className={`
-    h-7 min-w-7 rounded-full dark:border-green-200/20 border-green-800/30 flex justify-center items-center dark:text-green-300 text-green-800 cursor-pointer transition-all duration-100
+    h-7 min-w-7 rounded-full dark:border-green-200/20 border-green-800/30 flex justify-center items-center dark:text-white/80 text-green-800 cursor-pointer transition-all duration-100
     ${item.selectionCount > 0
                     ? "flex scale-100 opacity-100"
                     : "hidden opacity-0 scale-75 pointer-events-none"}
@@ -46,11 +46,11 @@ export const ItemFeed = ({ admin = false }) => {
                   );
                 }}
               >
-                <Minus height={20} width={20} />
+                <Minus height={17} width={17} />
               </div>
 
               <div className={`flex justify-center items-center font-bold ${(item.selectionCount > 0) ? "block" : "hidden"}`}>
-                <p className={`text-center text-xl dark:text-white leading-0`}>{item.selectionCount}</p>
+                <p className={`text-center dark:text-white leading-0 text-sm w-[15px]`}>{item.selectionCount}</p>
               </div>
 
               <div
@@ -67,7 +67,7 @@ export const ItemFeed = ({ admin = false }) => {
 
                 }}
                 className="
-                h-7 min-w-7 
+                h-7 min-w-7
     dark:border-green-200/20 border-green-800/50 
     flex justify-center items-center 
     dark:text-white/80 text-green-800 cursor-pointer
@@ -78,7 +78,7 @@ export const ItemFeed = ({ admin = false }) => {
     rounded-full
   "
               >
-                <Plus height={25} width={25} />
+                <Plus height={20} width={20} />
               </div>
 
             </div>
