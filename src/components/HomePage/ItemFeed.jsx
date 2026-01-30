@@ -19,25 +19,21 @@ export const ItemFeed = ({ admin = false }) => {
 
       <div className={`${admin ? "pb-[170px]" : "pb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
-          <div key={index} className='bg-[#02090104] dark:bg-[#020901]   pr-3 rounded-2xl flex items-center'>
-            <div className="w-26 h-26  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-2xl shrink-0"></div>
+          <div key={index} className='bg-[#02090104] dark:bg-[#020901] pr-3 rounded-xl flex items-center relative'>
+            <div className="w-[100px] h-[100px]  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-l-xl shrink-0"></div>
             <div className="grow ml-3">
               <p className='text-lg font-semibold dark:text-green-200 my-font'>{item.name}</p>
               <p className='dark:text-gray-200 text-xs'>₹{item.price}</p>
-              <p className='line-clamp-2 text-[#6e6e6e] text-xs'>12345678 90123456 789456784 567845678456 78khk hjkkhkh</p>
+              <p className='line-clamp-2 text-[#6e6e6e] text-xs'>Description</p>
             </div>
-            <div className={`${confirmOrder || admin ? "hidden" : "flex"} flex-col gap-1 shrink-0`}>
-
-              <div className="ml-3 flex justify-center items-center font-bold">
-                <p className={`text-center text-xl dark:text-white ${(item.selectionCount > 0) ? "opacity-100 block" : "opacity-0"}`}>{item.selectionCount}</p>
-              </div>
+            <div className={`${confirmOrder || admin ? "hidden" : "flex"} absolute transition-all duration-200 bottom-[5px] right-[5px] gap-1 shrink-0 border dark:border-white/40 border-black/40 rounded-md overflow-hidden`}>
 
               <div
                 className={`
-    h-7 min-w-7 ml-3 rounded-full border-2 dark:border-green-200/20 border-green-800/30 flex justify-center items-center dark:text-green-300 text-green-800 cursor-pointer transition-all duration-100
+    h-7 min-w-7 rounded-full dark:border-green-200/20 border-green-800/30 flex justify-center items-center dark:text-green-300 text-green-800 cursor-pointer transition-all duration-100
     ${item.selectionCount > 0
-                    ? "opacity-100 scale-100"
-                    : "opacity-0 scale-75 pointer-events-none"}
+                    ? "flex scale-100 opacity-100"
+                    : "hidden opacity-0 scale-75 pointer-events-none"}
     md:hover:bg-green-200/10
     active:scale-90
     active:bg-green-200/20
@@ -51,6 +47,10 @@ export const ItemFeed = ({ admin = false }) => {
                 }}
               >
                 <Minus height={20} width={20} />
+              </div>
+
+              <div className={`flex justify-center items-center font-bold ${(item.selectionCount > 0) ? "block" : "hidden"}`}>
+                <p className={`text-center text-xl dark:text-white leading-0`}>{item.selectionCount}</p>
               </div>
 
               <div
@@ -67,14 +67,15 @@ export const ItemFeed = ({ admin = false }) => {
 
                 }}
                 className="
-    h-7 mt-auto mb-2 min-w-7 ml-3 rounded-full 
-    border-2 dark:border-green-200/20 border-green-800/50 
+                h-7 min-w-7 
+    dark:border-green-200/20 border-green-800/50 
     flex justify-center items-center 
-    dark:text-green-300 text-green-800 cursor-pointer
+    dark:text-white/80 text-green-800 cursor-pointer
     transition-all duration-100
-    active:scale-90 
+    active:scale-95 
     active:bg-green-200/20
     md:hover:bg-green-200/10
+    rounded-full
   "
               >
                 <Plus height={25} width={25} />

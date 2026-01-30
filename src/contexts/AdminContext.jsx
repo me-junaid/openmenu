@@ -10,7 +10,7 @@ export const AdminProvider = ({ children }) => {
   const [selectedCategoryByAdmin, setSelectedCategoryByAdmin] = useState(0)
 
   const [canAddCategory, setCanAddCategory] = useState(false)
-  const [canAddNewItem, setCanAddNewItem] = useState(true)
+  const [canAddNewItem, setCanAddNewItem] = useState(false)
 
   const handleAdminSelect = useCallback((index) => {
     setSelectedByAdmin(index)
