@@ -12,7 +12,7 @@ export const ProductInfo = () => {
   return (
     <div className="fixed z-10 inset-0 top-[50px] w-full flex flex-col bg-white/10 dark:bg-black/40
       backdrop-blur-md" onClick={() => { if (openProductInfo) { setOpenProductInfo(false) } }}>
-      <div className="mt-auto h-1/2 rounded-t-[60px] border border-black/15 dark:border-white/15
+      <div className="mt-auto h-1/2 rounded-t-[60px] border border-b-0 border-black/15 dark:border-white/15
       bg-white/80 dark:bg-black/40
       backdrop-blur-md
       text-sm text-black/70 dark:text-white/70
