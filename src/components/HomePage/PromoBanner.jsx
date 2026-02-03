@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ItemsContext } from '../../Contexts/ItemsContext'
+import { ItemsContext } from '../../contexts/ItemsContext'
 
 
 export const PromoBanner = () => {

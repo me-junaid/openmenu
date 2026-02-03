@@ -1,7 +1,7 @@
 import React, { useCallback, useContext } from 'react'
 import { Plus } from '../Icons/Plus';
 import { Minus } from '../Icons/Minus';
-import { ItemsContext } from '../../Contexts/ItemsContext';
+import { ItemsContext } from '../../contexts/ItemsContext';
 
 
 export const ItemFeed = ({ admin = false }) => {

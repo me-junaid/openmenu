@@ -4,7 +4,7 @@ import { ItemFeed } from "../components/HomePage/ItemFeed"
 import { NavForCatergory } from "../components/Utilis/NavForCatergory"
 import { OrderSelection } from "../components/HomePage/OrderSelection"
 import { PromoBanner } from "../components/HomePage/PromoBanner"
-import { ItemsProvider } from "../Contexts/ItemsContext"
+import { ItemsProvider } from "../contexts/ItemsContext"
 import { useEffect } from "react"
 import { ProductInfo } from "../components/HomePage/ProductInfo"
 
