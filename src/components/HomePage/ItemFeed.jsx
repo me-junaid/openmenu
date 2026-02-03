@@ -38,6 +38,7 @@ export const ItemFeed = ({ admin = false }) => {
     active:scale-90
     active:bg-green-200/20
   `}
+  
                 onClick={(event) => {
                   event.stopPropagation();
                   updateSelectionCount(
