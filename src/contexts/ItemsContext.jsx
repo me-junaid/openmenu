@@ -5,6 +5,7 @@ export const ItemsContext = createContext();
 export const ItemsProvider = ({ children }) => {
 
   const initialData = {
+    name: "Eatmosphere",
     categories: [
       {
         id: 1,
@@ -128,6 +129,7 @@ export const ItemsProvider = ({ children }) => {
   const [openCart, setOpenCart] = useState(false)
   const [orderSelection, setOrderSelection] = useState(false)
   const [confirmOrder, setConfirmOrder] = useState(false)
+  const [openProductInfo, setOpenProductInfo] = useState(true)
 
   useEffect(() => {
     function sortCategoriesBySelectionCount(data) {
@@ -194,6 +196,8 @@ export const ItemsProvider = ({ children }) => {
       return { ...prev, categories: updatedCategories };
     });
   };
+
+  const [selectedItemDetails, setSelectedItemDetails] = useState({ name: "", price: "" })
 
 
   const updateSelectedItems = (categoryId, item) => {
@@ -266,7 +270,10 @@ export const ItemsProvider = ({ children }) => {
       updateOrderSelection,
       confirmOrder,
       updateConfirmOrder,
-      handleSelect
+      handleSelect,
+      selectedItemDetails,
+      setSelectedItemDetails,
+      openProductInfo, setOpenProductInfo
     }}>
       {children}
     </ItemsContext.Provider>

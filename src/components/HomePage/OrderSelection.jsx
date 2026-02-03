@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ItemsContext } from '../../contexts/ItemsContext';
+import { ItemsContext } from '../../Contexts/ItemsContext'; 
 import { Menu } from '../Icons/Menu';
 import { Waiter } from '../Icons/Waiter';
 import { Close } from '../Icons/Close';

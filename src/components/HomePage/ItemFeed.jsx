@@ -1,12 +1,12 @@
 import React, { useCallback, useContext } from 'react'
-import { ItemsContext } from '../../contexts/ItemsContext'
 import { Plus } from '../Icons/Plus';
 import { Minus } from '../Icons/Minus';
+import { ItemsContext } from '../../Contexts/ItemsContext';
 
 
 export const ItemFeed = ({ admin = false }) => {
 
-  const { user, selectedCategory, updateSelectionCount, selectedItems, confirmOrder } = useContext(ItemsContext);
+  const { user, selectedCategory, updateSelectionCount, selectedItems, confirmOrder, setSelectedItemDetails, setOpenProductInfo } = useContext(ItemsContext);
   const categoryName = user.categories[selectedCategory].name;
   const itemsInMenus = user.categories[selectedCategory].items;
 
@@ -19,14 +19,14 @@ export const ItemFeed = ({ admin = false }) => {
 
       <div className={`${admin ? "pb-[170px]" : "pb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
-          <div key={index} className='bg-[#02090104] dark:bg-[#020901] pr-3 rounded-xl flex items-center relative'>
-            <div className="w-[100px] h-[100px]  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-l-xl shrink-0"></div>
+          <div key={index} className='bg-[#02090104] dark:bg-[#020901] pr-3 rounded-xl flex items-center relative' onClick={() => { setSelectedItemDetails({ name: item.name, price: item.price }); setOpenProductInfo(true) }}>
+            <div className="w-18 h-18  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-xl shrink-0"></div>
             <div className="grow ml-3">
               <p className='text-lg font-semibold dark:text-green-200 my-font'>{item.name}</p>
               <p className='dark:text-gray-200 text-xs'>₹{item.price}</p>
               <p className='line-clamp-2 text-[#6e6e6e] text-xs'>Description</p>
             </div>
-            <div className={`${confirmOrder || admin ? "hidden" : "flex"} absolute transition-all duration-200 bottom-[5px] right-[5px] shrink-0 border dark:border-white/40 border-black/40 rounded-md overflow-hidden`}>
+            <div className={`${confirmOrder || admin ? "hidden" : "flex"} absolute transition-all duration-200 right-[5px] shrink-0 border-2 dark:border-white/40 border-black/40 bg-white dark:bg-black rounded-lg overflow-hidden`}>
 
               <div
                 className={`
@@ -38,7 +38,8 @@ export const ItemFeed = ({ admin = false }) => {
     active:scale-90
     active:bg-green-200/20
   `}
-                onClick={() => {
+                onClick={(event) => {
+                  event.stopPropagation();
                   updateSelectionCount(
                     user.categories[selectedCategory].id,
                     item.name,
@@ -54,7 +55,8 @@ export const ItemFeed = ({ admin = false }) => {
               </div>
 
               <div
-                onClick={() => {
+                onClick={(event) => {
+                  event.stopPropagation();
                   updateSelectionCount(
                     user.categories[selectedCategory].id,
                     item.name,
