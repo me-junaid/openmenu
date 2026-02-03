@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
-import { ItemsContext } from '../../contexts/ItemsContext'; 
 import { Menu } from '../Icons/Menu';
 import { Waiter } from '../Icons/Waiter';
 import { Close } from '../Icons/Close';
 import QRGenerator from '../Utilis/QRGenerator';
 import { Check } from '../Icons/Check';
 import { ArrowRight } from '../Icons/ArrowRight';
+import { ItemsContext } from '../../contexts/ItemsContext';
 
 export const OrderSelection = () => {
 
