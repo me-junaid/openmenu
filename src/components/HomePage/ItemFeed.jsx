@@ -6,6 +6,11 @@ import { ItemsContext } from '../../contexts/ItemsContext';
 
 export const ItemFeed = ({ admin = false }) => {
 
+  function getRandom1to100() {
+    return Math.floor(Math.random() * 100) + 1;
+  }
+
+
   const { user, selectedCategory, updateSelectionCount, selectedItems, confirmOrder, setSelectedItemDetails, setOpenProductInfo } = useContext(ItemsContext);
   const categoryName = user.categories[selectedCategory].name;
   const itemsInMenus = user.categories[selectedCategory].items;
@@ -19,15 +24,14 @@ export const ItemFeed = ({ admin = false }) => {
 
       <div className={`${admin ? "pb-[170px]" : "pb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
-          <div key={index} className='bg-[#02090104] dark:bg-[#020901] pr-3 rounded-xl flex items-center relative' onClick={() => { setSelectedItemDetails({ name: item.name, price: item.price }); setOpenProductInfo(true) }}>
-            <div className="w-18 h-18  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-xl shrink-0"></div>
+          <div key={index} className='bg-[#02090104] dark:bg-[#020901] pr-3 rounded-xl flex items-center relative' onClick={() => { setSelectedItemDetails({ name: item.name, price: item.price, categoryId: user.categories[selectedCategory].id }); setOpenProductInfo(true) }}>
+            <img className="w-18 h-18  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-xl shrink-0" src={`https://picsum.photos/200/300?random=${index * getRandom1to100()}`} alt="" />
             <div className="grow ml-3">
-              <p className='text-lg font-semibold dark:text-green-200 my-font'>{item.name}</p>
+              <p className='text-lg font-semibold dark:text-green-200 my-font w-4/5'>{item.name}</p>
               <p className='dark:text-gray-200 text-xs'>₹{item.price}</p>
               <p className='line-clamp-2 text-[#6e6e6e] text-xs'>Description</p>
             </div>
             <div className={`${confirmOrder || admin ? "hidden" : "flex"} absolute transition-all duration-200 right-[5px] shrink-0 border-2 dark:border-white/40 border-black/40 bg-white dark:bg-black rounded-lg overflow-hidden`}>
-
               <div
                 className={`
     h-7 min-w-7 rounded-full dark:border-green-200/20 border-green-800/30 flex justify-center items-center dark:text-white/80 text-green-800 cursor-pointer transition-all duration-100
@@ -38,7 +42,7 @@ export const ItemFeed = ({ admin = false }) => {
     active:scale-90
     active:bg-green-200/20
   `}
-  
+
                 onClick={(event) => {
                   event.stopPropagation();
                   updateSelectionCount(

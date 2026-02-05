@@ -23,6 +23,11 @@ export const CategoryFeed = ({ admin }) => {
     [handleSelect]
   );
 
+  function getRandom1to100() {
+    return Math.floor(Math.random() * 100) + 1;
+  }
+
+
   return (
     <div
       className={`${orderSelection ? "hidden" : "fixed bottom-0 left-0 right-0"}`}
@@ -31,9 +36,8 @@ export const CategoryFeed = ({ admin }) => {
     >
       <div
         id="category-scroll-container"
-        className={`${
-          admin ? "pb-14 h-40" : "h-[110px]"
-        } px-2 py-1 dark:bg-black bg-white flex overflow-x-auto hide-scrollbar`}
+        className={`${admin ? "pb-14 h-40" : "h-[110px]"
+          } px-2 py-1 dark:bg-black bg-white flex overflow-x-auto hide-scrollbar`}
       >
         {items.map((item, index) => {
           const isSelected = index === selectedCategory;
@@ -58,13 +62,12 @@ export const CategoryFeed = ({ admin }) => {
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={`${baseClasses} ${selectedClasses}`}
             >
-              <div className="dark:bg-gray-700 bg-gray-200 w-18 aspect-square rounded-lg" />
+              <img src={`https://picsum.photos/200/300?random=${index * getRandom1to100()}`} className="dark:bg-gray-700 bg-gray-200 w-18 aspect-square rounded-lg" />
               <div
-                className={`${
-                  isSelected
-                    ? "dark:text-yellow-200 text-black"
-                    : "text-black/70 dark:text-white"
-                } font-bold text-xs text-center my-font mt-1`}
+                className={`${isSelected
+                  ? "dark:text-yellow-200 text-black"
+                  : "text-black/70 dark:text-white"
+                  } font-bold text-xs text-center my-font mt-1`}
               >
                 {item.name}
               </div>
