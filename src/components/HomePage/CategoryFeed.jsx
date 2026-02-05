@@ -62,7 +62,7 @@ export const CategoryFeed = ({ admin }) => {
               onKeyDown={(e) => handleKeyDown(e, index)}
               className={`${baseClasses} ${selectedClasses}`}
             >
-              <img src={`https://picsum.photos/200/300?random=${index * getRandom1to100()}`} className="dark:bg-gray-700 bg-gray-200 w-18 aspect-square rounded-lg" />
+              <img src={`https://picsum.photos/200/300?random=${getRandom1to100() * getRandom1to100()}`} className="dark:bg-gray-700 bg-gray-200 w-18 aspect-square rounded-lg" />
               <div
                 className={`${isSelected
                   ? "dark:text-yellow-200 text-black"

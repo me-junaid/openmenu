@@ -24,8 +24,8 @@ export const ItemFeed = ({ admin = false }) => {
 
       <div className={`${admin ? "pb-[170px]" : "pb-[150px]"} px-2 mt-0 space-y-1 rounded-2xl -z-1`}>
         {itemsInMenus.map((item, index) => (
-          <div key={index} className='bg-[#02090104] dark:bg-[#020901] pr-3 rounded-xl flex items-center relative' onClick={() => { setSelectedItemDetails({ name: item.name, price: item.price, categoryId: user.categories[selectedCategory].id }); setOpenProductInfo(true) }}>
-            <img className="w-18 h-18  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-xl shrink-0" src={`https://picsum.photos/200/300?random=${index * getRandom1to100()}`} alt="" />
+          <div key={index} className='bg-[#02090100] dark:bg-[#020901] pr-3 rounded-xl flex items-center relative' onClick={() => { setSelectedItemDetails({ name: item.name, price: item.price, categoryId: user.categories[selectedCategory].id }); setOpenProductInfo(true) }}>
+            <img className="w-18 h-18  bg-[#0b0e0a10] dark:bg-[#0b0e0a] rounded-xl shrink-0" src={`https://picsum.photos/200/300?random=${getRandom1to100() * getRandom1to100()}`} alt="" />
             <div className="grow ml-3">
               <p className='text-lg font-semibold dark:text-green-200 my-font w-4/5'>{item.name}</p>
               <p className='dark:text-gray-200 text-xs'>₹{item.price}</p>
