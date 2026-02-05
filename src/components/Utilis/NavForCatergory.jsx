@@ -7,7 +7,7 @@ import { Waiter } from "../Icons/Waiter";
 
 export const NavForCatergory = () => {
 
-  const { selectedItems, updateOpenCart, updateOrderSelection } = useContext(ItemsContext);
+  const { selectedItems, updateOrderSelection } = useContext(ItemsContext);
 
   
   return (

@@ -25,8 +25,8 @@ export const ProductInfo = () => {
         <p className="text-lg font-bold mb-2 ml-10">₹{selectedItemDetails.price}</p>
         <div className="flex overflow-y-scroll gap-1 hide-scrollbar px-10">
           {
-            [1, 2, 3].map((item) => (
-              <div className="dark:bg-white/3 bg-black/3 rounded-2xl h-[250px] min-w-[250px] flex justify-center items-center">
+            [1, 2, 3].map((item, index) => (
+              <div key={index} className="dark:bg-white/3 bg-black/3 rounded-2xl h-[250px] min-w-[250px] flex justify-center items-center">
                 {item}
               </div>
             ))

@@ -9,7 +9,7 @@ import { ItemsContext } from '../../contexts/ItemsContext';
 
 export const OrderSelection = () => {
 
-  const { selectedItems, orderSelection, updateOrderSelection, confirmOrder, updateConfirmOrder, handleSelect } = useContext(ItemsContext);
+  const { selectedItems, orderSelection, updateOrderSelection, confirmOrder, updateConfirmOrder, handleSelect, getCategoryIndexById } = useContext(ItemsContext);
 
   const userTheme = document.documentElement.classList.contains("dark");
 
@@ -55,10 +55,10 @@ export const OrderSelection = () => {
             return (
               <div className={`${(confirmOrder ? "pr-5" : "pr-2")} dark:bg-green-900/9 bg-green-900/3 pl-5 py-2 flex justify-between items-center rounded-lg`} key={item.name} onClick={() => {
                 if (!confirmOrder) {
-                  updateOrderSelection()
+                  updateOrderSelection();
                   setTimeout(() => {
-                    handleSelect(item.categoryId - 1)
-                  }, 5);
+                    handleSelect(getCategoryIndexById(item.categoryId));
+                  }, 1);
                 }
               }}>
                 <div className="">

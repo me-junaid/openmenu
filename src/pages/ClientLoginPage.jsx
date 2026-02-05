@@ -34,12 +34,12 @@ export default function ClientLoginPage() {
 
       // 2️⃣ Insert profile
       const { error: profileError } = await supabase
-        .from("profiles")
+        .from("users")
         .insert({
           id: user.id,
           name,
-          email,
-          role: "Admin",
+          // email,
+          // role: "Admin",
         });
 
       if (profileError) throw profileError;

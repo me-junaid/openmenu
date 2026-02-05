@@ -1,178 +1,77 @@
 import { createContext, useCallback, useEffect, useState } from "react";
+import { getCategoriesWithItems } from "../services/menuService";
 
 export const ItemsContext = createContext();
 
+const USER_ID = "0307bc68-5818-4b0c-9e5b-b0c56aaea4fc";
+
 export const ItemsProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
-  const initialData = {
-    name: "Eatmosphere",
-    categories: [
-      {
-        id: 1,
-        name: "Hot Drinks",
-        items: [
-          { name: "Tea", price: 12, img: "", selectionCount: 0 },
-          { name: "Black Tea", price: 15, img: "", selectionCount: 0 },
-          { name: "Masala Tea", price: 18, img: "", selectionCount: 0 },
-          { name: "Coffee", price: 15, img: "", selectionCount: 0 },
-          { name: "Filter Coffee", price: 20, img: "", selectionCount: 0 },
-          { name: "Boost", price: 150, img: "", selectionCount: 0 },
-          { name: "Horlicks", price: 140, img: "", selectionCount: 0 },
-          { name: "Hot Chocolate", price: 120, img: "", selectionCount: 0 },
-        ],
-      },
+  const [openCart, setOpenCart] = useState(false);
+  const [orderSelection, setOrderSelection] = useState(false);
+  const [confirmOrder, setConfirmOrder] = useState(false);
+  const [openProductInfo, setOpenProductInfo] = useState(false);
 
-      {
-        id: 2,
-        name: "Cold Drinks",
-        items: [
-          { name: "Cold Coffee", price: 80, img: "", selectionCount: 0 },
-          { name: "Iced Tea", price: 70, img: "", selectionCount: 0 },
-          { name: "Lemon Soda", price: 60, img: "", selectionCount: 0 },
-          { name: "Mint Lime", price: 65, img: "", selectionCount: 0 },
-          { name: "Chocolate Milkshake", price: 120, img: "", selectionCount: 0 },
-          { name: "Vanilla Milkshake", price: 110, img: "", selectionCount: 0 },
-        ],
-      },
+  const [selectedItemDetails, setSelectedItemDetails] = useState({
+    name: "",
+    price: "",
+  });
 
-      {
-        id: 3,
-        name: "Snacks",
-        items: [
-          { name: "Payampori", price: 10, img: "", selectionCount: 0 },
-          { name: "Elanji", price: 15, img: "", selectionCount: 0 },
-          { name: "Cutlet", price: 15, img: "", selectionCount: 0 },
-          { name: "Veg Roll", price: 20, img: "", selectionCount: 0 },
-          { name: "Chicken Roll", price: 25, img: "", selectionCount: 0 },
-          { name: "Samosa", price: 12, img: "", selectionCount: 0 },
-          { name: "Pazham Pori", price: 12, img: "", selectionCount: 0 },
-          { name: "Bread Pakoda", price: 18, img: "", selectionCount: 0 },
-        ],
-      },
-
-      {
-        id: 4,
-        name: "Fast Food",
-        items: [
-          { name: "Veg Sandwich", price: 40, img: "", selectionCount: 0 },
-          { name: "Egg Sandwich", price: 50, img: "", selectionCount: 0 },
-          { name: "Chicken Sandwich", price: 70, img: "", selectionCount: 0 },
-          { name: "Veg Burger", price: 60, img: "", selectionCount: 0 },
-          { name: "Chicken Burger", price: 90, img: "", selectionCount: 0 },
-          { name: "French Fries", price: 70, img: "", selectionCount: 0 },
-          { name: "Cheese Fries", price: 90, img: "", selectionCount: 0 },
-        ],
-      },
-
-      {
-        id: 5,
-        name: "Juices",
-        items: [
-          { name: "Musambi Juice", price: 200, img: "", selectionCount: 0 },
-          { name: "Lime Juice", price: 60, img: "", selectionCount: 0 },
-          { name: "Orange Juice", price: 90, img: "", selectionCount: 0 },
-          { name: "Anar Juice", price: 150, img: "", selectionCount: 0 },
-          { name: "Watermelon Juice", price: 80, img: "", selectionCount: 0 },
-          { name: "Pineapple Juice", price: 90, img: "", selectionCount: 0 },
-          { name: "Grape Juice", price: 100, img: "", selectionCount: 0 },
-        ],
-      },
-
-      {
-        id: 6,
-        name: "Desserts",
-        items: [
-          { name: "Gulab Jamun", price: 40, img: "", selectionCount: 0 },
-          { name: "Ice Cream Vanilla", price: 60, img: "", selectionCount: 0 },
-          { name: "Ice Cream Chocolate", price: 70, img: "", selectionCount: 0 },
-          { name: "Brownie", price: 90, img: "", selectionCount: 0 },
-          { name: "Brownie with Ice Cream", price: 120, img: "", selectionCount: 0 },
-          { name: "Fruit Salad", price: 80, img: "", selectionCount: 0 },
-        ],
-      },
-
-      {
-        id: 7,
-        name: "Breakfast",
-        items: [
-          { name: "Idli (2 pcs)", price: 30, img: "", selectionCount: 0 },
-          { name: "Dosa", price: 40, img: "", selectionCount: 0 },
-          { name: "Masala Dosa", price: 60, img: "", selectionCount: 0 },
-          { name: "Poori Masala", price: 50, img: "", selectionCount: 0 },
-          { name: "Upma", price: 35, img: "", selectionCount: 0 },
-          { name: "Vada (2 pcs)", price: 30, img: "", selectionCount: 0 },
-        ],
-      },
-
-      {
-        id: 8,
-        name: "Meals & Rice",
-        items: [
-          { name: "Veg Meals", price: 90, img: "", selectionCount: 0 },
-          { name: "Chicken Meals", price: 140, img: "", selectionCount: 0 },
-          { name: "Fried Rice Veg", price: 120, img: "", selectionCount: 0 },
-          { name: "Fried Rice Chicken", price: 150, img: "", selectionCount: 0 },
-          { name: "Ghee Rice", price: 110, img: "", selectionCount: 0 },
-        ],
-      },
-    ],
-  };
-
-
-
-  // const sizeInBytes = new Blob([JSON.stringify(initialData)]).size;
-  // const sizeInKB = (sizeInBytes / 1024).toFixed(2);
-
-  // console.log(sizeInKB, "KB");
-
-
-  const [openCart, setOpenCart] = useState(false)
-  const [orderSelection, setOrderSelection] = useState(false)
-  const [confirmOrder, setConfirmOrder] = useState(false)
-  const [openProductInfo, setOpenProductInfo] = useState(true)
-
+  /* ---------------- FETCH MENU FROM DB ---------------- */
   useEffect(() => {
-    function sortCategoriesBySelectionCount(data) {
-      return {
-        ...data,
-        categories: data.categories.map(category => ({
-          ...category,
-          items: [...category.items].sort(
-            (a, b) => b.selectionCount - a.selectionCount
-          )
-        }))
-      };
+    async function loadMenu() {
+      try {
+        const categories = await getCategoriesWithItems(USER_ID);
+
+        setUser({
+          name: "Eatmosphere",
+          categories: categories.map((cat) => ({
+            id: cat.id,
+            name: cat.name,
+            items: cat.items.map((item) => ({
+              name: item.name,
+              price: item.price,
+              img: item.img || "",
+              selectionCount: item.selection_count ?? 0,
+            })),
+          })),
+        });
+      } catch (err) {
+        console.error("Menu fetch failed", err);
+      }
     }
 
-    // function sortByCategoryThenQuantity(items) {
-    //   return [...items].sort((a, b) => {
-    //     if (a.categoryId !== b.categoryId) {
-    //       return a.categoryId - b.categoryId;
-    //     }
-    //     return b.quantity - a.quantity;
-    //   });
-    // }
+    loadMenu();
+  }, []);
 
-    // setSelectedItems(sortByCategoryThenQuantity(selectedItems))
+  /* ---------------- SORT ITEMS AFTER ORDER ---------------- */
+  useEffect(() => {
+    if (!user) return;
 
-    setUser(sortCategoriesBySelectionCount(user))
-  }, [orderSelection])
+    setUser((prev) => ({
+      ...prev,
+      categories: prev.categories.map((cat) => ({
+        ...cat,
+        items: [...cat.items].sort(
+          (a, b) => b.selectionCount - a.selectionCount
+        ),
+      })),
+    }));
+  }, [orderSelection]);
 
-  const [selectedItems, setSelectedItems] = useState([])
-
-  const [selectedCategory, setSelectedCategory] = useState(0)
-
-  const [user, setUser] = useState(initialData);
-
+  /* ---------------- UPDATE ITEM COUNT ---------------- */
   const updateSelectionCount = (categoryId, itemName, type = "increment") => {
-    setUser(prev => {
+    setUser((prev) => {
       let updatedItem = null;
 
-      const updatedCategories = prev.categories.map(category =>
+      const updatedCategories = prev.categories.map((category) =>
         category.id === categoryId
           ? {
             ...category,
-            items: category.items.map(item => {
+            items: category.items.map((item) => {
               if (item.name === itemName) {
                 const newCount =
                   type === "increment"
@@ -180,7 +79,6 @@ export const ItemsProvider = ({ children }) => {
                     : Math.max(item.selectionCount - 1, 0);
 
                 updatedItem = { ...item, selectionCount: newCount };
-
                 return updatedItem;
               }
               return item;
@@ -197,32 +95,27 @@ export const ItemsProvider = ({ children }) => {
     });
   };
 
-  const [selectedItemDetails, setSelectedItemDetails] = useState({ name: "", price: "" })
-
-
+  /* ---------------- CART STATE ---------------- */
   const updateSelectedItems = (categoryId, item) => {
-    setSelectedItems(prev => {
-      const existingItem = prev.find(
-        i => i.name === item.name && i.categoryId === categoryId
+    setSelectedItems((prev) => {
+      const existing = prev.find(
+        (i) => i.name === item.name && i.categoryId === categoryId
       );
 
-      // REMOVE if quantity becomes 0
       if (item.selectionCount === 0) {
         return prev.filter(
-          i => !(i.name === item.name && i.categoryId === categoryId)
+          (i) => !(i.name === item.name && i.categoryId === categoryId)
         );
       }
 
-      // UPDATE if item already exists
-      if (existingItem) {
-        return prev.map(i =>
+      if (existing) {
+        return prev.map((i) =>
           i.name === item.name && i.categoryId === categoryId
             ? { ...i, quantity: item.selectionCount }
             : i
         );
       }
 
-      // ADD new item
       return [
         ...prev,
         {
@@ -236,45 +129,62 @@ export const ItemsProvider = ({ children }) => {
     });
   };
 
-  const updateOpenCart = () => {
-    setOpenCart((openCart) ? false : true)
-  }
+  /* ---------------- HELPERS ---------------- */
+  const updateOpenCart = () => setOpenCart((v) => !v);
+  const updateOrderSelection = () => setOrderSelection((v) => !v);
+  const updateConfirmOrder = () => setConfirmOrder(true);
 
-  const updateOrderSelection = () => {
-    setOrderSelection((orderSelection) ? false : true)
-  }
-  const updateConfirmOrder = () => {
-    setConfirmOrder(true)
-  }
+  const getCategoryIndexById = (categoryId) =>
+    user?.categories.findIndex((c) => c.id === categoryId) ?? 0;
 
   const handleSelect = useCallback((index) => {
     setSelectedCategory(index);
 
+    const container = document.getElementById(
+      "category-scroll-container"
+    );
     const el = document.getElementById(`cat-item-${index}`);
-    el?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
 
-    const catergoryName = document.getElementById(`catergory-name`);
-    catergoryName?.scrollIntoView({ behavior: "smooth", inline: "center", block: "center" });
+    if (!container || !el) return;
+
+    const containerWidth = container.offsetWidth;
+    const elementWidth = el.offsetWidth;
+
+    const scrollPosition =
+      el.offsetLeft -
+      containerWidth / 2 +
+      elementWidth / 2;
+
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
   }, []);
 
+  if (!user) return null;
+
   return (
-    <ItemsContext.Provider value={{
-      user,
-      selectedCategory,
-      setSelectedCategory,
-      updateSelectionCount,
-      selectedItems,
-      openCart,
-      updateOpenCart,
-      orderSelection,
-      updateOrderSelection,
-      confirmOrder,
-      updateConfirmOrder,
-      handleSelect,
-      selectedItemDetails,
-      setSelectedItemDetails,
-      openProductInfo, setOpenProductInfo
-    }}>
+    <ItemsContext.Provider
+      value={{
+        user,
+        selectedCategory,
+        setSelectedCategory,
+        updateSelectionCount,
+        selectedItems,
+        openCart,
+        updateOpenCart,
+        orderSelection,
+        updateOrderSelection,
+        confirmOrder,
+        updateConfirmOrder,
+        handleSelect,
+        getCategoryIndexById,
+        selectedItemDetails,
+        setSelectedItemDetails,
+        openProductInfo,
+        setOpenProductInfo,
+      }}
+    >
       {children}
     </ItemsContext.Provider>
   );
