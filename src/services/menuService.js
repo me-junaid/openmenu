@@ -16,6 +16,9 @@ export async function getCategoriesWithItems(userId) {
     .eq("is_live", true)
     .order("id", { ascending: true });
 
+  console.log(data);
   if (error) throw error;
   return data;
 }
+
+

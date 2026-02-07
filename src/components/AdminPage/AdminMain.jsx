@@ -30,7 +30,7 @@ export const AdminMain = () => {
           <AddCategory />
           <AddNewItem />
         </ItemsProvider>
-        k
+        
       </AdminProvider>
     )
   }

@@ -1,6 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { AdminContext } from '../../contexts/AdminContext'
 import { Close } from '../Icons/Close'
+import { createCategory } from '../../services/categoryService';
+import { supabase } from '../../config/supabase';
+
+
+
 
 export const AddCategory = () => {
   const { canAddCategory, setCanAddCategory } = useContext(AdminContext)
@@ -10,26 +15,41 @@ export const AddCategory = () => {
   const [isOfferAvailable, setIsOfferAvailable] = useState(false)
   const [isLive, setIsLive] = useState(false)
 
-  
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const payload = {
-      name,
-      image,
-      isOfferAvailable,
-      isLive
+    try {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+
+      console.log(user);
+
+      if (error || !user) {
+        alert("You must be logged in");
+        return;
+      }
+
+      await createCategory({
+        userId: user.id,
+        name,
+        image,
+        isLive,
+      });
+
+      // reset form
+      setName("");
+      setImage(null);
+      setIsLive(false);
+      setCanAddCategory(false);
+    } catch (err) {
+      console.error(err);
+      alert(err.message || "Failed to add category");
     }
+  };
 
-    console.log("Category data:", payload)
 
-    setName("")
-    setImage(null)
-    setIsOfferAvailable(false)
-    setIsLive(false)
-
-    setCanAddCategory(false)
-  }
 
   if (!canAddCategory) return null
 

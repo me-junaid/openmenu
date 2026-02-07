@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import { useContext } from 'react'
 import { Plus } from '../Icons/Plus';
 import { Minus } from '../Icons/Minus';
 import { ItemsContext } from '../../contexts/ItemsContext';
@@ -14,7 +14,6 @@ export const ItemFeed = ({ admin = false }) => {
   const { user, selectedCategory, updateSelectionCount, selectedItems, confirmOrder, setSelectedItemDetails, setOpenProductInfo } = useContext(ItemsContext);
   const categoryName = user.categories[selectedCategory].name;
   const itemsInMenus = user.categories[selectedCategory].items;
-
 
   return (
     <div className='dark:text-white dark:bg-black bg-white text-black '>

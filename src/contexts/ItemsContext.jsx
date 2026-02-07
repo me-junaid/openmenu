@@ -1,12 +1,13 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { getCategoriesWithItems } from "../services/menuService";
+import { supabase } from "../config/supabase";
 
-export const ItemsContext = createContext();
-
-const USER_ID = "0307bc68-5818-4b0c-9e5b-b0c56aaea4fc";
+export const ItemsContext = createContext(null);
 
 export const ItemsProvider = ({ children }) => {
+  const [USER_ID, setUSER_ID] = useState(null);
   const [user, setUser] = useState(null);
+
   const [selectedItems, setSelectedItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
 
@@ -15,39 +16,126 @@ export const ItemsProvider = ({ children }) => {
   const [confirmOrder, setConfirmOrder] = useState(false);
   const [openProductInfo, setOpenProductInfo] = useState(false);
 
+  const dummyData = {
+    name: "Eatmosphere",
+    categories: [
+      {
+        id: 1,
+        name: "Hot Drinks",
+        items: [
+          { name: "Tea", price: 12, img: "", selectionCount: 0 },
+          { name: "Black Tea", price: 15, img: "", selectionCount: 0 },
+        ],
+      },
+      {
+        id: 2,
+        name: "Cold Drinks",
+        items: [
+          { name: "Cold Coffee", price: 80, img: "", selectionCount: 0 },
+        ],
+      },
+    ],
+  };
+
   const [selectedItemDetails, setSelectedItemDetails] = useState({
     name: "",
     price: "",
   });
 
-  /* ---------------- FETCH MENU FROM DB ---------------- */
+  /* ---------------- AUTH USER ---------------- */
   useEffect(() => {
-    async function loadMenu() {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+        error,
+      } = await supabase.auth.getUser();
+
+      if (error || !user) {
+        console.warn("User not logged in");
+        return;
+      }
+
+      setUSER_ID(user.id);
+    };
+
+    fetchUser();
+  }, []);
+
+  /* ---------------- FETCH MENU ---------------- */
+  useEffect(() => {
+    if (!USER_ID) return;
+
+    const loadMenu = async () => {
       try {
         const categories = await getCategoriesWithItems(USER_ID);
 
-        setUser({
-          name: "Eatmosphere",
-          categories: categories.map((cat) => ({
-            id: cat.id,
-            name: cat.name,
-            items: cat.items.map((item) => ({
-              name: item.name,
-              price: item.price,
-              img: item.img || "",
-              selectionCount: item.selection_count ?? 0,
+        if (categories.length === 0) {
+          setUser({
+            name: "Eatmosphere",
+            categories: [
+              {
+                id: 1,
+                name: "Hot Drinks",
+                items: [
+                  { name: "Tea", price: 12, img: "", selectionCount: 0 },
+                  { name: "Black Tea", price: 15, img: "", selectionCount: 0 },
+                ],
+              },
+              {
+                id: 2,
+                name: "Cold Drinks",
+                items: [
+                  { name: "Cold Coffee", price: 80, img: "", selectionCount: 0 },
+                ],
+              },
+            ],
+          });
+        } else {
+          setUser({
+            name: "Eatmosphere",
+            categories: categories.map((cat) => ({
+              id: cat.id,
+              name: cat.name,
+              items: cat.items.map((item) => ({
+                name: item.name,
+                price: item.price,
+                img: item.img || "",
+                selectionCount: item.selection_count ?? 0,
+              })),
             })),
-          })),
-        });
+          });
+        }
       } catch (err) {
         console.error("Menu fetch failed", err);
+
+        // fallback demo data
+        setUser({
+          name: "Eatmosphere",
+          categories: [
+            {
+              id: 1,
+              name: "Hot Drinks",
+              items: [
+                { name: "Tea", price: 12, img: "", selectionCount: 0 },
+                { name: "Black Tea", price: 15, img: "", selectionCount: 0 },
+              ],
+            },
+            {
+              id: 2,
+              name: "Cold Drinks",
+              items: [
+                { name: "Cold Coffee", price: 80, img: "", selectionCount: 0 },
+              ],
+            },
+          ],
+        });
       }
-    }
+    };
 
     loadMenu();
-  }, []);
+  }, [USER_ID]);
 
-  /* ---------------- SORT ITEMS AFTER ORDER ---------------- */
+  /* ---------------- SORT BY SELECTION ---------------- */
   useEffect(() => {
     if (!user) return;
 
@@ -65,6 +153,8 @@ export const ItemsProvider = ({ children }) => {
   /* ---------------- UPDATE ITEM COUNT ---------------- */
   const updateSelectionCount = (categoryId, itemName, type = "increment") => {
     setUser((prev) => {
+      if (!prev) return prev;
+
       let updatedItem = null;
 
       const updatedCategories = prev.categories.map((category) =>
@@ -95,7 +185,6 @@ export const ItemsProvider = ({ children }) => {
     });
   };
 
-  /* ---------------- CART STATE ---------------- */
   const updateSelectedItems = (categoryId, item) => {
     setSelectedItems((prev) => {
       const existing = prev.find(
@@ -129,7 +218,7 @@ export const ItemsProvider = ({ children }) => {
     });
   };
 
-  /* ---------------- HELPERS ---------------- */
+  /* ---------------- UI HELPERS ---------------- */
   const updateOpenCart = () => setOpenCart((v) => !v);
   const updateOrderSelection = () => setOrderSelection((v) => !v);
   const updateConfirmOrder = () => setConfirmOrder(true);
@@ -140,20 +229,15 @@ export const ItemsProvider = ({ children }) => {
   const handleSelect = useCallback((index) => {
     setSelectedCategory(index);
 
-    const container = document.getElementById(
-      "category-scroll-container"
-    );
+    const container = document.getElementById("category-scroll-container");
     const el = document.getElementById(`cat-item-${index}`);
 
     if (!container || !el) return;
 
-    const containerWidth = container.offsetWidth;
-    const elementWidth = el.offsetWidth;
-
     const scrollPosition =
       el.offsetLeft -
-      containerWidth / 2 +
-      elementWidth / 2;
+      container.offsetWidth / 2 +
+      el.offsetWidth / 2;
 
     container.scrollTo({
       left: scrollPosition,
