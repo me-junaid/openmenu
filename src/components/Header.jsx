@@ -1,7 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { ItemsContext } from '../contexts/ItemsContext';
+console.log("Header is running.");
 
 export const Header = () => {
+
+
   const [theme, setTheme] = useState("light");
 
   const toggleTheme = () => {
@@ -12,7 +15,6 @@ export const Header = () => {
     document.documentElement.classList.toggle("dark", newTheme === "dark")
     localStorage.setItem('theme', newTheme)
   }
-
 
   useEffect(() => {
     const systemDefault = window.matchMedia('(prefers-color-scheme: dark)').matches;
